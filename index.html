@@ -27,7 +27,7 @@
 <meta name="twitter:image" content="https://YOURDOMAIN.ca/assets/og-image.jpg">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preload" as="image" href="assets/rob-vettese-headshot.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/photos/hero.jpg" fetchpriority="high">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -198,500 +198,454 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#1B2A41;
-  --navy-2:#24364F;
-  --cream:#F5F1E8;
-  --cream-2:#EDE7DA;
-  --card:#FBF9F4;
-  --brass:#B08D57;
-  --brass-2:#9A7A49;
-  --charcoal:#3A3D42;
-  --muted:#5F6167;
-  --brass-ink:#7E6237;
-  --line:rgba(27,42,65,.12);
-  --radius:16px;
-  --radius-sm:12px;
-  --pill:300px;
-  --wrap:1220px;
+  --navy:#1B2A41;--navy-2:#22344E;--navy-3:#2C405D;
+  --cream:#F5F1E8;--paper:#FBF9F4;--sand:#EDE7DA;
+  --brass:#B08D57;--brass-ink:#7E6237;
+  --ink:#1B2A41;--charcoal:#3A3D42;--muted:#5F6167;
+  --line:rgba(27,42,65,.12);--line-light:rgba(245,241,232,.14);
+  --r:18px;--r-sm:12px;--pill:999px;--wrap:1280px;
+  --ease:cubic-bezier(.2,.7,.2,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Manrope,system-ui,sans-serif;font-weight:500;font-size:16px;line-height:1.5;letter-spacing:-.02em;color:var(--muted);background:var(--cream);-webkit-font-smoothing:antialiased}
+body{font-family:Manrope,system-ui,sans-serif;font-weight:400;font-size:16px;line-height:1.6;letter-spacing:-.01em;color:var(--charcoal);background:var(--cream);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,h4{font-weight:500;color:var(--navy);letter-spacing:-.02em;line-height:1.12}
-h1{font-size:clamp(38px,5.4vw,64px)}
-h2{font-size:clamp(30px,3.8vw,46px)}
-h3{font-size:22px;line-height:1.25}
+button{font:inherit}
+h1,h2,h3,h4{font-weight:400;color:var(--ink);letter-spacing:-.035em;line-height:1.06}
+h1{font-size:clamp(44px,6.4vw,92px)}
+h2{font-size:clamp(34px,4.4vw,60px)}
+h3{font-size:clamp(22px,2vw,28px);letter-spacing:-.025em;line-height:1.2}
 p{color:var(--muted)}
-.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-.section{padding:clamp(88px,12vw,160px) 0}
-.section.tight-top{padding-top:0}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-ink)}
-.hero-content .eyebrow,.reviews-band .eyebrow,.contact-info .eyebrow,.inv-intro .eyebrow{color:var(--brass)}
-.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
-.head{max-width:640px;margin-bottom:56px}
-.head.center{margin-left:auto;margin-right:auto;text-align:center}
-.head.center .eyebrow::after{content:"";width:28px;height:1px;background:currentColor}
-.head h2{margin:16px 0 18px}
-.head p{font-size:18px;line-height:1.6}
-.split-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
-.split-head .head{margin-bottom:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 32px}
+.section{padding:clamp(96px,12vw,168px) 0}
+.pt0{padding-top:0}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-ink)}
+.on-dark .eyebrow,.eyebrow.light{color:var(--brass)}
+.lead{font-size:clamp(17px,1.4vw,19px);line-height:1.7;color:var(--muted)}
+.rule{height:1px;background:var(--line);border:0}
+section[id],#calculator,#top{scroll-margin-top:90px}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--navy);color:var(--cream);padding:10px 16px;border-radius:8px;z-index:100}
+.skip:focus{left:8px}
+
+/* split header: heading left, text right */
+.sh{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:end;margin-bottom:56px}
+.sh h2{margin-top:18px}
+.sh p{max-width:420px;justify-self:end}
+.sh.center{grid-template-columns:1fr;text-align:center;justify-items:center}
+.sh.center p{justify-self:center;max-width:560px}
 
 /* Buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 26px;border-radius:var(--pill);border:1px solid var(--navy);background:var(--navy);color:var(--cream);font:600 16px/1.25 Manrope,sans-serif;letter-spacing:-.01em;cursor:pointer;transition:transform .25s,background .25s,color .25s,border-color .25s}
-.btn:hover{transform:translateY(-2px);background:var(--navy-2)}
-.btn.brass{background:var(--brass);border-color:var(--brass);color:var(--navy)}
-.btn.brass:hover{background:#C4A06A;border-color:#C4A06A}
-.btn.ghost{background:transparent;color:var(--navy)}
-.btn.ghost:hover{background:var(--navy);color:var(--cream)}
-.btn.ghost-light{background:transparent;color:var(--cream);border-color:rgba(245,241,232,.45)}
-.btn.ghost-light:hover{background:var(--cream);color:var(--navy);border-color:var(--cream)}
-.btn svg{width:18px;height:18px}
-.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;border-radius:var(--pill);border:1px solid var(--navy);background:var(--navy);color:var(--cream);font-size:15px;font-weight:500;letter-spacing:0;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease);white-space:nowrap}
+.btn:hover{background:var(--navy-2);transform:translateY(-1px)}
+.btn.line{background:transparent;color:var(--navy)}
+.btn.line:hover{background:var(--navy);color:var(--cream)}
+.btn.cream{background:var(--cream);border-color:var(--cream);color:var(--navy)}
+.btn.cream:hover{background:#fff}
+.btn.line-light{background:transparent;border-color:rgba(245,241,232,.4);color:var(--cream)}
+.btn.line-light:hover{background:var(--cream);color:var(--navy)}
+.btn.sm{height:44px;padding:0 22px;font-size:14px}
+.btn svg{width:16px;height:16px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.circle{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:transparent;color:var(--navy);cursor:pointer;transition:.3s var(--ease);flex:none}
+.circle svg{width:18px;height:18px}
+.circle:hover{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.on-dark .circle{border-color:var(--line-light);color:var(--cream)}
+.on-dark .circle:hover{background:var(--cream);color:var(--navy)}
+
+/* Image slots */
+.img{position:relative;overflow:hidden;border-radius:var(--r);background:
+  radial-gradient(120% 90% at 78% 12%,rgba(176,141,87,.22),transparent 55%),
+  radial-gradient(90% 70% at 10% 100%,rgba(44,64,93,.9),transparent 60%),
+  linear-gradient(160deg,#2B3D58 0%,#1B2A41 55%,#121D2E 100%)}
+.img > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.img[data-label]:not(:has(> img))::before{content:attr(data-label);position:absolute;top:18px;right:18px;z-index:1;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,241,232,.7);border:1px dashed rgba(245,241,232,.35);padding:7px 12px;border-radius:var(--pill)}
+.shade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,29,46,.05) 0%,rgba(18,29,46,.2) 35%,rgba(18,29,46,.88) 100%);pointer-events:none}
 
 /* Nav */
-.nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+.nav{position:sticky;top:0;z-index:60;background:rgba(245,241,232,.82);backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);border-bottom:1px solid transparent;transition:border-color .3s}
 .nav.scrolled{border-bottom-color:var(--line)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px}
-.nav-logo img{height:40px;width:auto}
-.nav-links{display:flex;gap:34px;list-style:none}
-.nav-links a{color:var(--navy);font-size:16px;transition:color .2s}
-.nav-links a:hover{color:var(--brass)}
-.nav-right{display:flex;align-items:center;gap:22px}
-.nav-phone{color:var(--navy);font-weight:600;display:flex;align-items:center;gap:8px}
-.nav-phone svg{width:18px;height:18px;color:var(--brass)}
-.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;align-items:center;justify-content:center}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:84px;gap:24px}
+.nav-l{display:flex;align-items:center;gap:44px}
+.nav-logo img{height:38px;width:auto}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{font-size:15px;color:var(--navy);position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--brass);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-r{display:flex;align-items:center;gap:22px}
+.nav-tel{font-size:15px;color:var(--navy)}
+.burger{display:none;width:46px;height:46px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;align-items:center;justify-content:center}
 .burger span,.burger span::before,.burger span::after{display:block;width:18px;height:1.5px;background:var(--navy);position:relative;transition:.3s}
 .burger span::before,.burger span::after{content:"";position:absolute;left:0}
 .burger span::before{top:-6px}.burger span::after{top:6px}
 .nav.open .burger span{background:transparent}
 .nav.open .burger span::before{top:0;transform:rotate(45deg)}
 .nav.open .burger span::after{top:0;transform:rotate(-45deg)}
-.mobile-menu{display:none}
+.mmenu{display:none}
 
 /* Hero */
-.hero{padding:10px}
-.hero-card{position:relative;overflow:hidden;border-radius:var(--radius);background:var(--navy);min-height:min(820px,calc(100vh - 104px));display:grid;grid-template-columns:1.1fr .9fr;align-items:stretch}
-.hero-mark{position:absolute;left:-8%;bottom:-22%;width:58%;opacity:.045;pointer-events:none}
-.hero-content{position:relative;z-index:2;padding:clamp(48px,7vw,104px) clamp(28px,5vw,80px);display:flex;flex-direction:column;justify-content:center}
-.hero-content .eyebrow{color:var(--brass)}
-.hero h1{color:var(--cream);margin:22px 0 22px;max-width:640px}
-.hero h1 em{font-style:normal;color:var(--brass)}
-.hero-sub{color:rgba(245,241,232,.74);font-size:18px;line-height:1.65;max-width:520px;margin-bottom:40px}
-.search{background:var(--cream);border-radius:var(--radius);padding:10px;display:grid;grid-template-columns:repeat(3,1fr) auto;gap:6px;max-width:680px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
-.field{position:relative;padding:10px 16px;border-radius:var(--radius-sm);transition:background .2s}
-.field:hover{background:var(--cream-2)}
-.field + .field::before{content:"";position:absolute;left:-3px;top:18%;height:64%;width:1px;background:var(--line)}
-.field label{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brass)}
-.field label svg{width:14px;height:14px}
-.field select{appearance:none;-webkit-appearance:none;width:100%;border:0;background:transparent;font:600 16px Manrope,sans-serif;color:var(--navy);padding:4px 18px 0 0;cursor:pointer;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231B2A41' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
-.search .btn{border-radius:var(--radius-sm);padding:0 28px;height:100%;min-height:58px}
-.hero-trust{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap}
-.hero-trust div{display:flex;align-items:center;gap:10px;color:rgba(245,241,232,.85);font-size:15px}
-.stars{color:var(--brass);letter-spacing:2px;font-size:15px}
-.hero-photo{position:relative;z-index:1;margin:10px 10px 10px 0;border-radius:calc(var(--radius) - 4px);overflow:hidden}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(27,42,65,.55))}
-.photo-tag{position:absolute;left:22px;bottom:22px;right:22px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(245,241,232,.94);backdrop-filter:blur(10px);border-radius:var(--radius-sm);padding:14px 18px}
-.photo-tag strong{display:block;color:var(--navy);font-size:17px;font-weight:700}
-.photo-tag span{font-size:14px}
-.photo-tag img{width:38px;height:auto}
+.hero{padding-top:clamp(40px,6vw,80px)}
+.hero-top{display:grid;grid-template-columns:1.35fr .65fr;gap:56px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.hero h1{margin-top:22px}
+.hero-aside p{font-size:17px;line-height:1.7;margin-bottom:26px}
+.hero-media{margin:0 12px;height:clamp(520px,72vh,780px);border-radius:24px}
+.hero-media.img > img{object-position:center 62%}
+.path .shade::after{background:linear-gradient(180deg,rgba(18,29,46,0) 15%,rgba(18,29,46,.55) 45%,rgba(18,29,46,.94) 85%)}
+.alert-card.shade::after,.ct-card.shade::after{background:linear-gradient(180deg,rgba(18,29,46,.1) 10%,rgba(18,29,46,.6) 45%,rgba(18,29,46,.95) 90%)}
+.path small{color:#D2B07A}
+.areas-banner{aspect-ratio:21/8;margin-bottom:24px}
+.path .img > img,.alert-card > img,.ct-card > img{z-index:-1}
+.alert-card,.ct-card{isolation:isolate}
+.shade::after{z-index:0}
+.alert-card > *:not(img),.ct-card > *:not(img){z-index:2}
+.search{position:relative;z-index:2;margin:-92px auto 0;width:min(1080px,calc(100% - 72px));background:rgba(251,249,244,.98);border-radius:var(--pill);padding:8px;display:grid;grid-template-columns:1.25fr auto 1fr 1fr 1fr;align-items:center;box-shadow:0 30px 70px -30px rgba(10,16,28,.6)}
+.s-q{display:flex;align-items:center;gap:10px;padding:0 18px}
+.s-q svg{width:18px;height:18px;color:var(--navy);flex:none}
+.s-q input{border:0;background:transparent;width:100%;font:400 15px Manrope,sans-serif;color:var(--navy);outline:none;height:48px}
+.s-q input::placeholder{color:var(--muted)}
+.search .btn{height:48px}
+.s-f{position:relative;padding:0 18px;border-left:1px solid var(--line);display:flex;align-items:center;gap:10px}
+.s-f svg{width:16px;height:16px;color:var(--brass-ink);flex:none}
+.s-f select{appearance:none;-webkit-appearance:none;width:100%;border:0;background:transparent;font:400 15px Manrope,sans-serif;color:var(--navy);height:48px;padding-right:18px;cursor:pointer;outline:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231B2A41' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right center}
+.s-f:first-of-type{margin-left:12px}
+.hero-meta{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:40px 44px 0;font-size:14px;color:var(--muted)}
+.hero-meta span{display:inline-flex;align-items:center;gap:10px}
+.hero-meta .stars{color:var(--brass);letter-spacing:2px}
 
-/* Steps */
-.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
-.stat-panel{background:var(--navy);border-radius:var(--radius);padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;overflow:hidden;aspect-ratio:1/1.02}
-.stat-panel .bg{position:absolute;inset:auto -10% -12% auto;width:85%;opacity:.08}
-.stat{position:relative;background:rgba(245,241,232,.06);border:1px solid rgba(245,241,232,.12);border-radius:var(--radius-sm);padding:26px;display:flex;flex-direction:column;justify-content:flex-end}
-.stat b{font-weight:500;font-size:clamp(40px,4.4vw,58px);color:var(--cream);letter-spacing:-.04em;line-height:1}
-.stat b small{font-size:.5em;color:var(--brass);margin-left:2px}
-.stat span{color:rgba(245,241,232,.7);margin-top:10px;font-size:15px}
-.stat.wide{grid-column:span 2;flex-direction:row;align-items:center;gap:18px;justify-content:flex-start}
-.stat.wide img{width:64px}
-.stat.wide p{color:rgba(245,241,232,.82);font-size:16px;line-height:1.5}
-.steps{list-style:none;margin:40px 0 44px;display:flex;flex-direction:column;gap:14px}
-.step{display:flex;align-items:center;gap:22px;padding:20px 22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);transition:transform .3s,box-shadow .3s}
-.step:hover{transform:translateX(6px);box-shadow:0 20px 40px -28px rgba(27,42,65,.4)}
-.step-ico{flex:none;width:58px;height:58px;border-radius:50%;background:var(--navy);display:grid;place-items:center;color:var(--brass)}
-.step-ico svg{width:24px;height:24px}
-.step small{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brass);margin-bottom:4px}
-.step h3{font-size:19px}
+/* Quote strip (marquee) */
+.quotes{padding:72px 0 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.q-track{display:flex;width:max-content;animation:marq 60s linear infinite}
+.quotes:hover .q-track{animation-play-state:paused}
+@keyframes marq{to{transform:translateX(-50%)}}
+.q{width:340px;padding:4px 36px;border-left:1px solid var(--line);flex:none}
+.q blockquote{font-size:18px;line-height:1.45;color:var(--ink);letter-spacing:-.02em;margin-bottom:20px}
+.who{display:flex;align-items:center;gap:12px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--cream);display:grid;place-items:center;font-size:12px;font-weight:600;letter-spacing:.04em;flex:none}
+.who strong{display:block;font-weight:600;color:var(--ink);font-size:14px;letter-spacing:-.01em}
+.who span{font-size:13px;color:var(--muted)}
 
-/* About */
-.about-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:.85fr 1.15fr;overflow:hidden}
-.about-visual{background:var(--cream-2);display:grid;place-items:center;padding:56px;position:relative}
-.about-visual img{width:min(78%,360px)}
-.about-body{padding:clamp(36px,6vw,80px)}
-.about-body h2{margin:16px 0 26px}
-.about-body p{font-size:17px;line-height:1.75;margin-bottom:18px;color:var(--charcoal)}
-.roles{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 36px}
-.roles span{border:1px solid var(--line);border-radius:var(--pill);padding:8px 16px;color:var(--navy);font-size:14px;font-weight:600;background:var(--cream)}
+/* About (team member single) */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,110px);align-items:start}
+.portrait{aspect-ratio:4/4.6;border-radius:var(--r)}
+.portrait > img{object-position:50% 20%}
+@media (min-width:981px){.about .portrait{position:sticky;top:110px}}
+.namecard{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;background:rgba(251,249,244,.96);backdrop-filter:blur(8px);border-radius:var(--r-sm);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.namecard strong{display:block;font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.02em}
+.namecard span{font-size:13.5px;color:var(--muted)}
+.namecard a{color:var(--navy)}
+.namecard a svg{width:20px;height:20px}
+.about-body h2{margin:18px 0 26px}
+.about-body p{font-size:17px;line-height:1.8;color:var(--charcoal);margin-bottom:18px}
+.about-body hr{margin:40px 0}
+.about-body h3{margin-bottom:18px}
+.dots{list-style:none;margin:6px 0 36px}
+.dots li{position:relative;padding:14px 0 14px 26px;border-bottom:1px solid var(--line);color:var(--charcoal);font-size:16px}
+.dots li::before{content:"";position:absolute;left:2px;top:23px;width:7px;height:7px;border-radius:50%;background:var(--brass)}
+
+/* Paths */
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.path{position:relative;aspect-ratio:3/4;border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:30px;color:var(--cream);isolation:isolate}
+.path .img{position:absolute;inset:0;border-radius:0;z-index:-1}
+.path:hover .img > img{transform:scale(1.04)}
+.path small{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);font-weight:600;margin-bottom:12px}
+.path h3{color:var(--cream);font-size:clamp(28px,2.6vw,38px);margin-bottom:12px}
+.path p{color:rgba(245,241,232,.78);font-size:15.5px;line-height:1.6;max-width:320px;margin-bottom:24px}
+.path .go{display:flex;align-items:center;justify-content:space-between;padding-top:20px;border-top:1px solid var(--line-light);font-size:14px;font-weight:500}
+.path .go i{width:40px;height:40px;border-radius:50%;background:var(--cream);color:var(--navy);display:grid;place-items:center;transition:transform .35s var(--ease)}
+.path .go i svg{width:16px;height:16px}
+.path:hover .go i{transform:translateX(4px)}
 
 /* Listings */
-.list-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.listing{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .35s,box-shadow .35s}
-.listing:hover{transform:translateY(-6px);box-shadow:0 30px 50px -34px rgba(27,42,65,.45)}
-.listing-img{aspect-ratio:4/3;position:relative;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);display:grid;place-items:center;overflow:hidden}
-.listing-img img{width:34%;opacity:.16}
-.badge{position:absolute;top:16px;left:16px;background:var(--cream);color:var(--navy);font-size:13px;font-weight:700;padding:6px 14px;border-radius:var(--pill)}
-.badge.brass{background:var(--brass);color:var(--navy)}
-.listing-body{padding:24px}
-.skel{height:12px;border-radius:6px;background:var(--cream-2);margin-bottom:10px}
-.listing-body h3{margin-bottom:8px}
-.feat{display:flex;gap:18px;padding-top:18px;margin-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--charcoal)}
-.feat span{display:flex;align-items:center;gap:6px}
-.feat svg{width:16px;height:16px;color:var(--brass)}
-.mls-note{margin-top:28px;display:flex;align-items:center;gap:14px;justify-content:center;text-align:center;font-size:15px;color:var(--charcoal)}
-.mls-note i{width:8px;height:8px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 6px rgba(176,141,87,.18);flex:none}
+.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lst .img{aspect-ratio:4/3.4}
+.lst:hover .img > img{transform:scale(1.04)}
+.chips{position:absolute;left:14px;right:14px;bottom:14px;z-index:2;display:flex;gap:4px;flex-wrap:wrap;background:rgba(251,249,244,.96);border-radius:var(--pill);padding:7px 14px;font-size:13px;color:var(--ink);width:max-content;max-width:calc(100% - 28px)}
+.chips span{display:inline-flex;align-items:center;gap:6px;padding:2px 8px}
+.chips span + span{border-left:1px solid var(--line)}
+.chips svg{width:14px;height:14px;color:var(--brass-ink)}
+.lst h3{font-size:22px;margin:20px 0 6px}
+.lst p{font-size:14.5px}
+.mls{margin-top:40px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.mls p{max-width:620px}
 
-/* Services */
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.svc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px 28px 30px;display:flex;flex-direction:column;transition:background .35s,transform .35s}
-.svc:hover{background:var(--navy);transform:translateY(-6px)}
-.svc:hover h3{color:var(--cream)}
-.svc:hover p{color:rgba(245,241,232,.72)}
-.svc:hover .svc-ico{background:var(--brass);color:#fff}
-.svc-ico{width:56px;height:56px;border-radius:50%;background:var(--cream-2);color:var(--navy);display:grid;place-items:center;margin-bottom:56px;transition:.35s}
-.svc-ico svg{width:24px;height:24px}
-.svc h3{margin-bottom:12px;transition:color .35s}
-.svc p{font-size:15px;line-height:1.6;transition:color .35s}
-
-/* Testimonials */
-.reviews-band{background:var(--navy);border-radius:var(--radius);margin:0 10px;padding:clamp(80px,10vw,140px) 0;position:relative;overflow:hidden}
-.reviews-band .head h2{color:var(--cream)}
-.reviews-band .head p{color:rgba(245,241,232,.7)}
-.reviews-band .bg{position:absolute;left:-8%;top:-10%;width:40%;opacity:.05}
-.rating{display:flex;align-items:center;gap:16px;background:rgba(245,241,232,.06);border:1px solid rgba(245,241,232,.14);border-radius:var(--radius-sm);padding:16px 22px;color:var(--cream)}
-.rating b{font-size:36px;font-weight:500;letter-spacing:-.03em}
-.rating small{display:block;color:rgba(245,241,232,.65);font-size:13px}
-.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
-.rev{background:var(--cream);border-radius:var(--radius);padding:30px 28px 26px;display:flex;flex-direction:column}
-.rev .stars{font-size:16px;margin-bottom:18px}
-.rev h3{font-size:20px;margin-bottom:14px}
-.rev-text{color:var(--charcoal);font-size:15.5px;line-height:1.7;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
-.rev-text p{color:inherit;margin-bottom:12px}
-.rev.open .rev-text{display:block;-webkit-line-clamp:unset}
-.more{align-self:flex-start;margin-top:10px;background:none;border:0;color:var(--brass-2);font:700 14px Manrope,sans-serif;cursor:pointer;padding:0}
-.more[hidden]{display:none}
-.who{display:flex;align-items:center;gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
-.avatar{width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--cream);display:grid;place-items:center;font-weight:700;font-size:15px;letter-spacing:0;flex:none}
-.who strong{display:block;color:var(--navy);font-size:16px}
-.who span{font-size:14px}
-
-/* CTA */
-.cta{position:relative;border-radius:var(--radius);background:var(--brass);padding:clamp(48px,7vw,88px);display:grid;grid-template-columns:1.3fr auto;gap:40px;align-items:center;overflow:hidden}
-.cta h2{color:#fff;margin-bottom:14px}
-.cta p{color:rgba(255,255,255,.88);font-size:18px;max-width:560px}
-.cta .bg{position:absolute;right:-4%;top:-30%;width:38%;opacity:.12}
-.cta .btn{background:var(--navy);border-color:var(--navy)}
-.cta .btn.ghost-light{background:transparent;border-color:rgba(255,255,255,.6);color:#fff}
-.cta .btn.ghost-light:hover{background:#fff;color:var(--navy)}
-.cta .btn-row{position:relative}
-
-/* Areas */
-.areas{display:flex;flex-wrap:wrap;gap:12px}
-.area{display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:var(--pill);background:var(--card);border:1px solid var(--line);color:var(--navy);font-weight:600;transition:.25s}
-.area svg{width:16px;height:16px;color:var(--brass)}
-.area:hover{border-color:var(--brass);transform:translateY(-2px)}
-
-/* FAQ */
-.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,110px);align-items:start}
-.faq-side{position:sticky;top:120px}
-.faq-side h2{margin:16px 0 18px}
-.faq-side p{font-size:18px;margin-bottom:32px}
-.faq{display:flex;flex-direction:column;gap:12px}
-.qa{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden}
-.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 26px;background:none;border:0;text-align:left;font:500 19px/1.35 Manrope,sans-serif;letter-spacing:-.02em;color:var(--navy);cursor:pointer}
-.qa .plus{flex:none;width:36px;height:36px;border-radius:50%;background:var(--cream-2);position:relative;transition:.3s}
-.qa .plus::before,.qa .plus::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--navy);transform:translate(-50%,-50%);transition:.3s}
-.qa .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
-.qa.open .plus{background:var(--navy)}
-.qa.open .plus::before,.qa.open .plus::after{background:var(--cream)}
-.qa.open .plus::after{transform:translate(-50%,-50%) rotate(0)}
-.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s}
-.qa.open .qa-a{grid-template-rows:1fr}
-.qa-a > div{overflow:hidden}
-.qa-a p{padding:0 26px 24px;line-height:1.7;color:var(--charcoal)}
-
-/* Newsletter */
-.news{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(40px,6vw,72px);display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.news h2{font-size:clamp(28px,3.2vw,40px);margin:14px 0 12px}
-.inline-form{display:flex;gap:8px;background:var(--cream);border:1px solid var(--line);border-radius:var(--pill);padding:6px}
-.inline-form input{flex:1;min-width:0;border:0;background:transparent;padding:0 20px;font:500 16px Manrope,sans-serif;color:var(--navy);outline:none}
-.form-msg{margin-top:14px;font-size:15px;color:var(--brass-2);min-height:22px}
-
-/* Contact / Evaluation */
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.contact-info{background:var(--navy);border-radius:var(--radius);padding:clamp(36px,5vw,64px);position:relative;overflow:hidden;display:flex;flex-direction:column}
-.contact-info h2{color:var(--cream);margin:16px 0 18px}
-.contact-info > p{color:rgba(245,241,232,.72);font-size:17px;line-height:1.65}
-.contact-info .bg{position:absolute;right:-12%;bottom:-16%;width:70%;opacity:.07}
-.c-lines{margin-top:auto;padding-top:40px;display:flex;flex-direction:column;gap:14px;position:relative}
-.c-line{display:flex;align-items:center;gap:16px;color:var(--cream);font-size:17px;font-weight:600}
-.c-line i{width:48px;height:48px;border-radius:50%;border:1px solid rgba(245,241,232,.2);display:grid;place-items:center;color:var(--brass);flex:none}
-.c-line i svg{width:20px;height:20px}
-.c-line small{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,241,232,.55);font-weight:700}
-.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(32px,4.5vw,56px)}
-.form-card h3{font-size:26px;margin-bottom:8px}
-.form-card > p{margin-bottom:28px}
-.tabs{display:inline-flex;background:var(--cream-2);border-radius:var(--pill);padding:4px;margin-bottom:26px;flex-wrap:wrap}
-.tabs button{border:0;background:transparent;padding:9px 18px;border-radius:var(--pill);font:600 14px Manrope,sans-serif;color:var(--navy);cursor:pointer;transition:.25s}
-.tabs button.on{background:var(--navy);color:var(--cream)}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fgrid .full{grid-column:span 2}
-.in{display:flex;flex-direction:column;gap:6px}
-.in label{font-size:13px;font-weight:700;color:var(--navy)}
-.in input,.in textarea,.in select{width:100%;border:1px solid var(--line);background:var(--cream);border-radius:var(--radius-sm);padding:14px 16px;font:500 16px Manrope,sans-serif;color:var(--navy);outline:none;transition:border-color .2s,box-shadow .2s}
-.in input:focus,.in textarea:focus,.in select:focus{border-color:var(--brass);box-shadow:0 0 0 4px rgba(176,141,87,.15)}
-.in textarea{min-height:120px;resize:vertical}
-.form-card .btn{margin-top:20px;width:100%}
-
-/* Footer */
-.footer{padding:0 10px 10px}
-.footer-card{background:var(--navy);border-radius:var(--radius);padding:clamp(56px,7vw,88px) 0 32px;color:rgba(245,241,232,.7)}
-.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid rgba(245,241,232,.12)}
-.f-top img{height:46px;width:auto;margin-bottom:22px}
-.f-top p{color:rgba(245,241,232,.65);font-size:15px;line-height:1.65;max-width:340px}
-.f-top h4{color:var(--cream);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
-.f-top ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:15px}
-.f-top a:hover{color:var(--brass)}
-.social{display:flex;gap:10px;margin-top:24px}
-.social a{width:42px;height:42px;border-radius:50%;border:1px solid rgba(245,241,232,.2);display:grid;place-items:center;color:var(--cream);transition:.25s}
-.social a:hover{background:var(--brass);border-color:var(--brass)}
-.social svg{width:17px;height:17px}
-.f-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:28px;font-size:13px;color:rgba(245,241,232,.5)}
-.f-bottom p{color:inherit;max-width:760px}
-
-/* Reveal */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-
-/* Responsive */
-@media (max-width:1080px){
-  .svc-grid{grid-template-columns:repeat(2,1fr)}
-  .rev-grid{grid-template-columns:repeat(2,1fr)}
-  .f-top{grid-template-columns:1fr 1fr}
-  .nav-phone{display:none}
-}
-@media (max-width:900px){
-  .nav-links,.nav-right .btn{display:none}
-  .burger{display:inline-flex}
-  .mobile-menu{display:block;max-height:0;overflow:hidden;transition:max-height .35s}
-  .nav.open .mobile-menu{max-height:420px}
-  .mobile-menu ul{list-style:none;padding:8px 24px 24px;display:flex;flex-direction:column;gap:4px}
-  .mobile-menu a{display:block;padding:12px 0;color:var(--navy);font-size:18px;border-bottom:1px solid var(--line)}
-  .mobile-menu .btn{margin-top:16px;width:100%;border-bottom:0;color:var(--cream)}
-  .hero-card{grid-template-columns:1fr}
-  .hero-photo{margin:0 10px 10px;aspect-ratio:4/4.2}
-  .search{grid-template-columns:1fr}
-  .field + .field::before{left:16px;right:16px;top:-3px;width:auto;height:1px}
-  .steps-grid,.faq-grid,.news,.contact,.cta{grid-template-columns:1fr}
-  .about-card{grid-template-columns:1fr}
-  .about-visual{padding:48px}
-  .list-grid{grid-template-columns:1fr 1fr}
-  .faq-side{position:static}
-  .stat-panel{aspect-ratio:auto}
-}
-@media (max-width:620px){
-  .wrap{padding:0 18px}
-  .svc-grid,.rev-grid,.list-grid{grid-template-columns:1fr}
-  .fgrid{grid-template-columns:1fr}.fgrid .full{grid-column:auto}
-  .f-top{grid-template-columns:1fr}
-  .inline-form{flex-direction:column;border-radius:var(--radius-sm)}
-  .inline-form input{padding:14px 14px}
-  .hero-trust{gap:16px}
-  .stat{padding:20px}
-}
-
-/* v2 additions */
-.nav-links{gap:28px}
-.hero-trust div svg{width:16px;height:16px;color:var(--brass)}
-
-/* Paths: buy / sell / invest */
-.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.path{position:relative;overflow:hidden;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);padding:36px 32px 32px;display:flex;flex-direction:column;min-height:340px;transition:transform .35s,box-shadow .35s}
-.path:hover{transform:translateY(-6px);box-shadow:0 30px 50px -34px rgba(27,42,65,.45)}
-.path.dark{background:var(--navy);border-color:var(--navy)}
-.path.dark h3{color:var(--cream)}
-.path.dark p{color:rgba(245,241,232,.72)}
-.path.dark .path-ico{background:var(--brass);color:#fff}
-.path .bg{position:absolute;right:-18%;bottom:-20%;width:70%;opacity:.06}
-.path-ico{width:56px;height:56px;border-radius:50%;background:var(--cream-2);color:var(--navy);display:grid;place-items:center;margin-bottom:auto}
-.path-ico svg{width:24px;height:24px}
-.path h3{font-size:28px;margin:48px 0 12px}
-.path p{line-height:1.65;margin-bottom:24px}
-.path .link{display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--brass-2);font-size:15px}
-.path.dark .link{color:var(--brass)}
-.path .link svg{width:16px;height:16px;transition:transform .25s}
-.path:hover .link svg{transform:translateX(4px)}
-
-/* Guides */
-.guide-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(32px,5vw,64px)}
-.guide-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
-.guide-top h2{margin-top:14px}
-.seg{display:inline-flex;background:var(--cream-2);border-radius:var(--pill);padding:4px}
-.seg button{border:0;background:transparent;padding:11px 24px;border-radius:var(--pill);font:600 15px Manrope,sans-serif;color:var(--navy);cursor:pointer;transition:.25s}
+/* Band (soft grey band like template) */
+.band{background:var(--paper);border-radius:28px;margin:0 12px;padding:clamp(80px,10vw,140px) 0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:var(--pill);padding:4px;background:var(--cream)}
+.seg button{border:0;background:transparent;padding:10px 24px;border-radius:var(--pill);font-size:14px;font-weight:500;color:var(--navy);cursor:pointer;transition:.3s var(--ease)}
 .seg button.on{background:var(--navy);color:var(--cream)}
-.guide{display:none;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:g}
+.guide{display:none;grid-template-columns:repeat(5,1fr);gap:28px}
 .guide.on{display:grid}
-.g-step{position:relative;padding:26px 22px;background:var(--cream);border-radius:var(--radius-sm);border:1px solid var(--line)}
-.g-step b{display:block;font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--brass);margin-bottom:28px}
-.g-step h3{font-size:18px;margin-bottom:10px}
-.g-step p{font-size:14.5px;line-height:1.6;color:var(--charcoal)}
-.guide-foot{margin-top:32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-.guide-foot p{max-width:560px;color:var(--charcoal)}
+.g{border-top:1px solid var(--navy);padding-top:24px}
+.g b{display:block;font-size:13px;font-weight:600;letter-spacing:.18em;color:var(--brass-ink);margin-bottom:44px}
+.g h3{font-size:20px;margin-bottom:12px}
+.g p{font-size:15px;line-height:1.65}
+.band-foot{margin-top:64px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.band-foot p{max-width:540px}
 
-/* Investing */
-.inv{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}
-.inv-intro{background:var(--navy);border-radius:var(--radius);padding:clamp(36px,5vw,64px);position:relative;overflow:hidden;display:flex;flex-direction:column}
-.inv-intro h2{color:var(--cream);margin:16px 0 20px}
-.inv-intro p{color:rgba(245,241,232,.75);font-size:17px;line-height:1.7;margin-bottom:16px}
-.inv-intro .bg{position:absolute;right:-14%;bottom:-18%;width:72%;opacity:.07}
-.inv-intro .btn-row{margin-top:auto;padding-top:24px;position:relative}
-.inv-cols{display:grid;grid-template-rows:1fr 1fr;gap:20px}
-.inv-col{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px}
-.inv-col h3{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-.inv-col h3 i{width:46px;height:46px;border-radius:50%;background:var(--cream-2);display:grid;place-items:center;color:var(--navy)}
-.inv-col h3 i svg{width:20px;height:20px}
-.ticks{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px}
-.ticks li{display:flex;gap:10px;color:var(--charcoal);font-size:15.5px;line-height:1.45}
-.ticks li::before{content:"";flex:none;width:18px;height:18px;margin-top:1px;border-radius:50%;background:var(--brass) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center/12px no-repeat}
-.inv-quote{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);font-size:15px;color:var(--muted);font-style:italic}
-.inv-quote b{font-style:normal;color:var(--navy)}
+/* Investing split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(48px,7vw,110px);align-items:center}
+.split .img.tall{aspect-ratio:4/5}
+.split h2{margin:18px 0 24px}
+.split .lead{margin-bottom:36px}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-bottom:28px}
+.cols2 h4{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
+.cols2 ul{list-style:none}
+.cols2 li{padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--charcoal)}
+.pull{font-size:15px;color:var(--muted);font-style:italic;margin-bottom:32px}
+.pull b{font-style:normal;color:var(--ink);font-weight:600}
 
-/* Resources */
-.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.res{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;cursor:pointer;text-align:left;font:inherit;color:inherit;transition:transform .3s,border-color .3s}
-.res:hover{transform:translateY(-4px);border-color:var(--brass)}
-.res .svc-ico{margin-bottom:36px}
-.res h3{font-size:20px;margin-bottom:10px}
-.res p{font-size:15px;line-height:1.6;margin-bottom:20px}
-.res .link{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--brass-2);font-size:14px}
-.res .link svg{width:15px;height:15px}
+/* Resources (resource center) */
+.res{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:stretch}
+.res-l h2{margin:18px 0 18px}
+.res-l > p{margin-bottom:36px;max-width:480px}
+.r-item{display:grid;grid-template-columns:120px 1fr auto;gap:24px;align-items:center;padding:20px 0;border-top:1px solid var(--line);cursor:pointer;background:none;border-left:0;border-right:0;border-bottom:0;text-align:left;width:100%;color:inherit}
+.r-item:last-child{border-bottom:1px solid var(--line)}
+.r-thumb{aspect-ratio:1/1;border-radius:var(--r-sm);background:var(--navy);display:grid;place-items:center;color:var(--brass);transition:background .3s}
+.r-thumb svg{width:30px;height:30px}
+.r-item:hover .r-thumb{background:var(--navy-3)}
+.r-item h3{font-size:21px;margin-bottom:6px}
+.r-item p{font-size:14.5px}
+.r-item .circle{width:42px;height:42px}
+.r-item:hover .circle{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.alert-card{min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(30px,4vw,48px);color:var(--cream)}
+.alert-card > *:not(img){position:relative;z-index:2}
+.alert-card h3{color:var(--cream);font-size:clamp(30px,3vw,42px);margin:16px 0 14px}
+.alert-card p{color:rgba(245,241,232,.78);margin-bottom:24px;max-width:420px}
+.pillform{display:flex;gap:6px;background:var(--cream);border-radius:var(--pill);padding:6px}
+.pillform input{flex:1;min-width:0;border:0;background:transparent;padding:0 18px;font:400 15px Manrope,sans-serif;color:var(--navy);outline:none}
+.pillform .btn{height:46px}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:12.5px;line-height:1.55;color:var(--charcoal)}
+.consent input{flex:none;width:16px;height:16px;margin-top:2px;accent-color:var(--navy)}
+.consent a{color:inherit;text-decoration:underline}
+.on-dark .consent,.alert-card .consent{color:rgba(245,241,232,.75)}
+.on-dark .consent input,.alert-card .consent input{accent-color:var(--brass)}
+.fmsg{margin-top:12px;font-size:14px;min-height:20px;color:var(--brass-ink)}
+.on-dark .fmsg,.alert-card .fmsg{color:var(--brass)}
 
 /* Calculator */
-.calc{margin-top:20px;display:grid;grid-template-columns:1.1fr .9fr;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
-.calc-in{background:var(--card);padding:clamp(28px,4vw,48px)}
-.calc-in h3{font-size:26px;margin-bottom:6px}
-.calc-in > p{margin-bottom:26px}
-.range{margin-bottom:22px}
-.range-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
-.range-top label{font-size:14px;font-weight:700;color:var(--navy)}
-.range-top output{font-weight:700;color:var(--navy);font-size:17px}
-.range input[type=range]{width:100%;accent-color:var(--brass);height:4px}
+.calc{margin-top:20px;display:grid;grid-template-columns:1.15fr .85fr;border-radius:var(--r);overflow:hidden;background:var(--paper)}
+.calc-in{padding:clamp(30px,4vw,56px)}
+.calc-in h3{margin:14px 0 8px}
+.calc-in > p{margin-bottom:34px}
+.rg{margin-bottom:26px}
+.rg-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.rg-top label{font-size:14px;color:var(--ink);font-weight:500}
+.rg-top output{font-size:18px;color:var(--ink);font-weight:500;letter-spacing:-.02em}
+.rg input[type=range]{width:100%;accent-color:var(--navy)}
 .amort{display:flex;gap:8px}
-.amort button{flex:1;border:1px solid var(--line);background:var(--cream);border-radius:var(--radius-sm);padding:12px;font:600 15px Manrope,sans-serif;color:var(--navy);cursor:pointer}
+.amort button{flex:1;height:46px;border:1px solid var(--line);background:transparent;border-radius:var(--pill);font-size:14px;font-weight:500;color:var(--navy);cursor:pointer;transition:.25s}
 .amort button.on{background:var(--navy);color:var(--cream);border-color:var(--navy)}
-.calc-out{background:var(--navy);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:center;color:var(--cream);position:relative;overflow:hidden}
-.calc-out .bg{position:absolute;right:-20%;bottom:-18%;width:80%;opacity:.06}
-.calc-out small{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brass)}
-.calc-out .big{font-size:clamp(44px,5vw,64px);font-weight:500;letter-spacing:-.04em;line-height:1.05;margin:10px 0 4px}
-.calc-out .per{color:rgba(245,241,232,.65)}
-.calc-rows{margin:28px 0;display:flex;flex-direction:column;gap:12px;position:relative}
-.calc-rows div{display:flex;justify-content:space-between;border-bottom:1px solid rgba(245,241,232,.12);padding-bottom:12px;color:rgba(245,241,232,.75);font-size:15px}
-.calc-rows b{color:var(--cream);font-weight:600}
-.calc-note{font-size:13px;line-height:1.55;color:rgba(245,241,232,.55);position:relative}
+.calc-out{background:var(--navy);padding:clamp(30px,4vw,56px);display:flex;flex-direction:column;justify-content:center;color:var(--cream)}
+.calc-out .big{font-size:clamp(48px,5.4vw,76px);font-weight:300;letter-spacing:-.05em;line-height:1;margin:16px 0 6px;color:var(--cream)}
+.calc-out .per{color:rgba(245,241,232,.6)}
+.crow{margin:34px 0 26px}
+.crow div{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line-light);font-size:15px;color:rgba(245,241,232,.7)}
+.crow b{color:var(--cream);font-weight:500}
+.cnote{font-size:12.5px;line-height:1.6;color:rgba(245,241,232,.5)}
 
-/* Contact select */
-.form-card select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231B2A41' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-.c-line span{word-break:break-word}
+/* Reviews carousel */
+.reviews{background:var(--navy);border-radius:28px;margin:0 12px;padding:clamp(80px,10vw,140px) 0;color:var(--cream)}
+.reviews h2{color:var(--cream)}
+.rv{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(48px,7vw,110px)}
+.rv-side{position:sticky;top:120px;align-self:start}
+.rv-side h2{margin:18px 0 22px}
+.rv-side p{color:rgba(245,241,232,.65);margin-bottom:40px;max-width:340px}
+.rv-ctl{display:flex;align-items:center;gap:12px}
+.rv-count{margin-left:12px;font-size:14px;color:rgba(245,241,232,.6);letter-spacing:.1em}
+.rv-count b{color:var(--cream);font-weight:500}
+.rv-main{position:relative;min-height:420px}
+.slide{display:none;animation:fade .7s var(--ease)}
+.slide.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.slide .stars{color:var(--brass);letter-spacing:3px;margin-bottom:26px}
+.slide h3{color:var(--cream);font-size:clamp(30px,3.2vw,46px);font-weight:300;letter-spacing:-.035em;line-height:1.15;margin-bottom:28px}
+.slide .txt p{color:rgba(245,241,232,.78);font-size:16.5px;line-height:1.8;margin-bottom:14px}
+.slide .who{margin-top:34px;padding-top:26px;border-top:1px solid var(--line-light)}
+.slide .av{background:var(--cream);color:var(--navy);width:46px;height:46px}
+.slide .who strong{color:var(--cream);font-size:16px}
+.slide .who span{color:rgba(245,241,232,.6)}
 
-/* Small CTA band */
-.talk{text-align:center;max-width:720px;margin:0 auto}
-.talk h2{margin:16px 0 18px}
-.talk p{font-size:18px;margin-bottom:32px}
-.talk .btn-row{justify-content:center}
+/* Areas */
+.areas{display:grid;grid-template-columns:repeat(3,1fr);column-gap:40px}
+.area{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);font-size:clamp(19px,1.6vw,23px);color:var(--ink);letter-spacing:-.02em;transition:padding .35s var(--ease),color .3s}
+.area svg{width:18px;height:18px;color:var(--brass-ink);transition:transform .35s var(--ease)}
+.area:hover{padding-left:8px}
+.area:hover svg{transform:translateX(4px)}
 
-@media (max-width:1080px){
-  .res-grid{grid-template-columns:repeat(2,1fr)}
-  .guide{grid-template-columns:repeat(2,1fr)}
+/* FAQ */
+.faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,7vw,110px);align-items:start}
+.faq-side{position:sticky;top:120px}
+.faq-side h2{margin:18px 0 18px}
+.faq-side p{margin-bottom:32px;max-width:360px}
+.qa{border-top:1px solid var(--line)}
+.qa:last-child{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;background:none;border:0;text-align:left;font-size:clamp(18px,1.6vw,22px);font-weight:400;letter-spacing:-.02em;color:var(--ink);cursor:pointer}
+.qa .circle{width:40px;height:40px;transition:.35s var(--ease)}
+.qa.open .circle{background:var(--navy);color:var(--cream);border-color:var(--navy);transform:rotate(180deg)}
+.qa-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.qa.open .qa-a{grid-template-rows:1fr}
+.qa-a > div{overflow:hidden}
+.qa-a p{padding:0 64px 28px 0;line-height:1.75;color:var(--charcoal)}
+
+/* Contact V2 */
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ct-card{min-height:600px;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(28px,3.5vw,44px);color:var(--cream)}
+.ct-card > *{position:relative;z-index:2}
+.ct-card h3{color:var(--cream);font-size:clamp(26px,2.4vw,34px);margin:14px 0 12px}
+.ct-card p{color:rgba(245,241,232,.78);max-width:400px;margin-bottom:24px}
+.ct-lines{display:flex;flex-direction:column;gap:12px;padding-top:22px;border-top:1px solid var(--line-light)}
+.ct-lines a,.ct-lines div{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--cream)}
+.ct-lines svg{width:18px;height:18px;color:var(--brass);flex:none;margin-top:3px}
+.form{background:var(--paper);border-radius:var(--r);padding:clamp(30px,4vw,52px)}
+.form h3{margin-bottom:8px}
+.form > p{margin-bottom:30px}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fg .full{grid-column:span 2}
+.fi label{display:block;font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:8px}
+.fi input,.fi select,.fi textarea{width:100%;border:1px solid transparent;background:var(--cream);border-radius:var(--pill);height:52px;padding:0 20px;font:400 15px Manrope,sans-serif;color:var(--navy);outline:none;transition:border-color .25s,box-shadow .25s}
+.fi textarea{border-radius:var(--r-sm);height:auto;min-height:130px;padding:16px 20px;resize:vertical}
+.fi select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231B2A41' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 20px center;padding-right:44px}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--brass);box-shadow:0 0 0 4px rgba(176,141,87,.14)}
+.form .btn{margin-top:22px}
+.direct{margin-top:clamp(96px,11vw,150px)}
+.direct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:40px;border-top:1px solid var(--line)}
+.dc{background:var(--paper);border-radius:var(--r);padding:40px 30px;text-align:center;display:flex;flex-direction:column;align-items:center;transition:transform .35s var(--ease)}
+.dc:hover{transform:translateY(-4px)}
+.dc i{width:52px;height:52px;border-radius:50%;background:var(--cream);display:grid;place-items:center;color:var(--navy);margin-bottom:22px}
+.dc i svg{width:20px;height:20px}
+.dc h3{font-size:22px;margin-bottom:10px}
+.dc p{font-size:14.5px;margin-bottom:20px;max-width:260px}
+.dc span{font-size:15px;color:var(--ink);font-weight:500;display:inline-flex;gap:8px;align-items:center;word-break:break-word}
+.dc span svg{width:14px;height:14px}
+
+/* Footer */
+.footer{padding:0 12px 12px}
+.f{background:var(--navy);border-radius:28px;color:rgba(245,241,232,.7);padding:clamp(64px,7vw,96px) 0 36px}
+.f-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;padding-bottom:56px;border-bottom:1px solid var(--line-light)}
+.f-top h2{color:var(--cream);font-size:clamp(30px,3.2vw,44px)}
+.f-top form{justify-self:end;width:min(480px,100%)}
+.f-mid{display:grid;grid-template-columns:1.1fr .9fr .9fr 1fr;gap:40px;padding:56px 0}
+.f-card{background:var(--navy-2);border-radius:var(--r);padding:32px;display:flex;flex-direction:column;gap:18px}
+.f-card h3{color:var(--cream);font-size:24px}
+.f-card p{color:rgba(245,241,232,.65);font-size:14.5px}
+.f-card .row{display:flex;justify-content:space-between;align-items:center;padding-top:22px;margin-top:6px;border-top:1px solid var(--line-light)}
+.f-card .row img{height:34px;width:auto}
+.f-card .row a{color:var(--cream)}
+.f-card .row a svg{width:20px;height:20px}
+.f-mid h4{color:var(--cream);font-size:15px;font-weight:500;margin-bottom:18px;letter-spacing:-.01em}
+.f-mid ul{list-style:none;display:flex;flex-direction:column;gap:11px;font-size:14.5px}
+.f-mid a:hover{color:var(--cream)}
+.f-legal{padding-top:28px;border-top:1px solid var(--line-light);display:grid;grid-template-columns:1fr auto;gap:24px;font-size:12.5px;line-height:1.65;color:rgba(245,241,232,.5)}
+.f-legal p{color:inherit;max-width:860px}
+.legal-links{display:flex;gap:20px;flex-wrap:wrap;align-content:flex-start}
+.legal-links a{color:rgba(245,241,232,.8);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+
+/* Reveal */
+.rv-up{opacity:0;transform:translateY(32px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv-up.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv-up{opacity:1;transform:none;transition:none}.q-track{animation:none}html{scroll-behavior:auto}.slide{animation:none}}
+
+/* Responsive */
+@media (max-width:1180px){
+  .nav-tel{display:none}
+  .guide{grid-template-columns:repeat(3,1fr);row-gap:40px}
+  .f-mid{grid-template-columns:1fr 1fr}
 }
-@media (max-width:900px){
-  .path-grid,.inv,.calc{grid-template-columns:1fr}
-  .inv-cols{grid-template-rows:auto}
-  .path{min-height:0}
+@media (max-width:980px){
+  .nav-links,.nav-r .btn{display:none}
+  .burger{display:inline-flex}
+  .mmenu{display:block;max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+  .nav.open .mmenu{max-height:520px}
+  .mmenu ul{list-style:none;padding:8px 32px 28px}
+  .mmenu a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-size:20px;color:var(--navy)}
+  .mmenu .btn{margin-top:18px;width:100%;border-bottom:0;color:var(--cream);font-size:15px}
+  .hero-top,.sh,.about,.split,.res,.rv,.faq,.ct,.f-top,.calc{grid-template-columns:minmax(0,1fr)}
+  .f-top form{width:100%}
+  .sh p{justify-self:start}
+  .f-top form{justify-self:start}
+  .search{width:auto;margin:-48px 28px 0;grid-template-columns:1fr;border-radius:var(--r);padding:12px}
+  .hero-media{height:clamp(380px,60vh,560px)}
+  .s-f,.s-f:first-of-type{border-left:0;border-top:1px solid var(--line);margin:0}
+  .search .btn{order:5;margin-top:8px}
+  .paths,.listings{grid-template-columns:1fr 1fr}
+  .faq-side,.rv-side{position:static}
+  .areas{grid-template-columns:1fr 1fr}
+  .portrait{max-width:560px}
+  .rv-main{min-height:0}
 }
-@media (max-width:620px){
-  .res-grid,.guide{grid-template-columns:1fr}
-  .ticks{grid-template-columns:1fr}
-  .seg{width:100%}.seg button{flex:1;padding:11px 10px}
+@media (max-width:640px){
+  .wrap{padding:0 20px}
+  .paths,.listings,.direct-grid,.areas,.cols2,.fg,.f-mid{grid-template-columns:1fr}
+  .fg .full{grid-column:auto}
+  .guide{grid-template-columns:1fr}
+  .path{aspect-ratio:4/4.4}
+  .r-item{grid-template-columns:72px 1fr}
+  .r-item .circle{display:none}
+  .q{width:290px;padding:4px 24px}
+  .f-legal{grid-template-columns:1fr}
+  .qa-a p{padding-right:0}
+  .hero-meta{padding-left:20px;padding-right:20px}
 }
-
-/* v3: accessibility + consent */
-.field label,.step small,.g-step b,.res .link,.path .link,.more{color:var(--brass-ink)}
-.path.dark .link{color:var(--brass)}
-.consent{display:flex;gap:12px;align-items:flex-start;margin-top:14px;font-size:13.5px;line-height:1.55;color:var(--charcoal)}
-.consent input{flex:none;width:18px;height:18px;margin-top:2px;accent-color:var(--navy)}
-.consent a{color:var(--navy);text-decoration:underline}
-.legal-links{display:flex;gap:18px;flex-wrap:wrap}
-.legal-links a{color:rgba(245,241,232,.75);text-decoration:underline;text-underline-offset:3px}
-.legal-links a:hover{color:var(--brass)}
-:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
-section[id],#calculator,#top{scroll-margin-top:96px}
-.skip{position:absolute;left:-999px;top:8px;background:var(--navy);color:var(--cream);padding:10px 16px;border-radius:8px;z-index:100}
-.skip:focus{left:8px}
 </style>
 </head>
 <body>
 <a class="skip" href="#top">Skip to content</a>
-
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
-    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></symbol>
-    <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
-    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="2.4" stroke-linecap="round"/></symbol>
-    <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/><path d="M16 8h4v4"/></symbol>
-    <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 9.2-9.2M17 6l3 3M14 9l2 2"/></symbol>
-    <symbol id="i-sign" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 21V3M5 5h13l-2 4 2 4H5"/></symbol>
-    <symbol id="i-build" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 21V9l8-6 8 6v12"/><path d="M9 21v-7h6v7"/><path d="M12 9h.01" stroke-width="2.4" stroke-linecap="round"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-    <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 18V6M3 14h18v4M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></symbol>
-    <symbol id="i-bath" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3zM6 12V5a2 2 0 0 1 3.5-1.3"/></symbol>
-    <symbol id="i-area" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
-  </defs>
-</svg>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-  <symbol id="i-calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6.5h8v3H8zM8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-linecap="round"/></symbol>
-  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16zM10 20.5a2 2 0 0 0 4 0"/></symbol>
-  <symbol id="i-hammer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m14 7 3-3 3 3-3 3M15.5 5.5 9 12M4 20l7.5-7.5 1.8 1.8L5.8 21.8z"/></symbol>
-  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></symbol>
-  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/><path d="M10 20v-6h4v6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18V6M3 14h18v4M21 14v-3a3 3 0 0 0-3-3h-7v6"/><circle cx="7" cy="11" r="2"/></symbol>
+  <symbol id="i-bath" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-3zM6 12V5a2 2 0 0 1 3.5-1.3"/></symbol>
+  <symbol id="i-area" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6.5h8v3H8zM8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01" stroke-linecap="round" stroke-width="1.8"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15L6 16zM10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/><path d="M16 8h4v4"/></symbol>
+  <symbol id="i-sold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 21V3M5 5h13l-2 4 2 4H5"/></symbol>
+  <symbol id="i-val" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9v11h14V9"/><path d="M12 11v6M10 12.5c0-.8.9-1.5 2-1.5s2 .7 2 1.5-.9 1.2-2 1.5-2 .7-2 1.5.9 1.5 2 1.5 2-.7 2-1.5"/></symbol>
 </defs></svg>
 
 <!-- NAV -->
 <header class="nav" id="nav">
-  <div class="wrap nav-inner">
-    <a href="#top" class="nav-logo" aria-label="Rob Vettese — home"><img src="assets/logo-horizontal-navy.png" alt="Rob Vettese" width="1662" height="444"></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#guides" data-guide="buy">Buy</a></li>
-      <li><a href="#guides" data-guide="sell">Sell</a></li>
-      <li><a href="#investing">Invest</a></li>
-      <li><a href="#resources">Resources</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-    </ul>
-    <div class="nav-right">
-      <a class="nav-phone" href="tel:+14165400175"><svg><use href="#i-phone"/></svg>(416) 540-0175</a>
-      <a href="#contact" class="btn">Let's talk</a>
+  <div class="wrap nav-in">
+    <div class="nav-l">
+      <a href="#top" class="nav-logo" aria-label="Rob Vettese — home"><img src="assets/logo-horizontal-navy.png" alt="Rob Vettese" width="1662" height="444"></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#guides" data-guide="buy">Buy</a></li>
+        <li><a href="#guides" data-guide="sell">Sell</a></li>
+        <li><a href="#investing">Invest</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="nav-r">
+      <a class="nav-tel" href="tel:+14165400175">(416) 540-0175</a>
+      <a href="#contact" class="btn sm">Book a consultation</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span></button>
     </div>
   </div>
-  <div class="mobile-menu">
+  <div class="mmenu">
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#guides" data-guide="buy">Buy</a></li>
       <li><a href="#guides" data-guide="sell">Sell</a></li>
       <li><a href="#investing">Invest</a></li>
       <li><a href="#resources">Resources</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#contact" class="btn">Let's talk</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="tel:+14165400175">(416) 540-0175</a></li>
+      <li><a href="#contact" class="btn">Book a consultation</a></li>
     </ul>
   </div>
 </header>
@@ -700,389 +654,343 @@ section[id],#calculator,#top{scroll-margin-top:96px}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-card">
-    <img class="hero-mark" src="assets/monogram-light.png" alt="" aria-hidden="true">
-    <div class="hero-content">
-      <span class="eyebrow">Real Estate Agent · RE/MAX Niagara Realty Ltd., Brokerage</span>
-      <h1>Real estate advice you can <em>trust</em> in St. Catharines &amp; Niagara</h1>
-      <p class="hero-sub">Whether you're buying your first home, selling, or investing, I'll explain every step and give you honest advice, so you can make decisions with confidence.</p>
-
-      <form class="search" id="search" aria-label="Search properties">
-        <div class="field">
-          <label for="s-loc"><svg><use href="#i-pin"/></svg>Location</label>
-          <select id="s-loc">
-            <option>All Niagara</option>
-            <option>St. Catharines</option>
-            <option>Niagara Falls</option>
-            <option>Fort Erie &amp; Ridgeway</option>
-            <option>Welland</option>
-            <option>Thorold</option>
-            <option>Niagara-on-the-Lake</option>
-            <option>Port Colborne</option>
-            <option>Pelham</option>
-            <option>Grimsby &amp; Lincoln</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="s-type"><svg><use href="#i-home"/></svg>Property</label>
-          <select id="s-type">
-            <option>Houses</option>
-            <option>Condos &amp; Townhomes</option>
-            <option>Investment / Multi-unit</option>
-            <option>Luxury</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="s-goal"><svg><use href="#i-tag"/></svg>I want to</label>
-          <select id="s-goal">
-            <option>Buy</option>
-            <option>Sell</option>
-            <option>Invest</option>
-          </select>
-        </div>
-        <button class="btn brass" type="submit">Search<svg><use href="#i-arrow"/></svg></button>
-      </form>
-
-      <div class="hero-trust">
-        <div><span class="stars">★★★★★</span>Reviews from real clients</div>
-        <div><svg><use href="#i-user"/></svg>7+ years in real estate</div>
-        <div><svg><use href="#i-pin"/></svg>Based in St. Catharines</div>
-      </div>
+  <div class="wrap hero-top">
+    <div class="rv-up">
+      <span class="eyebrow">Rob Vettese · Real Estate Agent · RE/MAX Niagara Realty Ltd., Brokerage</span>
+      <h1>Real estate advice you can trust in St.&nbsp;Catharines &amp;&nbsp;Niagara</h1>
     </div>
-    <div class="hero-photo">
-      <img src="assets/rob-vettese-headshot.jpg" alt="Rob Vettese, real estate agent with RE/MAX Niagara Realty Ltd., Brokerage, St. Catharines" width="1011" height="1100" fetchpriority="high" decoding="async">
-      <div class="photo-tag">
-        <div><strong>Rob Vettese, Real Estate Agent</strong><span>RE/MAX Niagara Realty Ltd., Brokerage</span></div>
-        <img src="assets/monogram-navy.png" alt="" aria-hidden="true">
-      </div>
+    <div class="hero-aside rv-up">
+      <p>Whether you're buying your first home, selling, or investing, I'll explain every step and give you honest advice, so you can make decisions with confidence.</p>
+      <div class="btns"><a href="#contact" class="btn">Book a consultation<svg><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+  <div class="hero-media img" data-slot="hero" data-label="Stock image · Hero — luxury home exterior"><img src="assets/photos/hero.jpg" alt="Luxury stone home at sunset" fetchpriority="high" decoding="async"></div>
+  <form class="search" id="search" aria-label="Search properties">
+    <label class="s-q"><svg><use href="#i-search"/></svg><input type="search" placeholder="Search by city, neighbourhood or address" aria-label="Search for properties"></label>
+    <button class="btn" type="submit">Search</button>
+    <div class="s-f"><svg><use href="#i-pin"/></svg>
+      <select aria-label="Location">
+        <option>All Niagara</option><option>St. Catharines</option><option>Niagara Falls</option><option>Niagara-on-the-Lake</option><option>Fort Erie &amp; Ridgeway</option><option>Welland</option><option>Thorold</option><option>Pelham</option><option>Port Colborne</option><option>Grimsby &amp; Lincoln</option>
+      </select></div>
+    <div class="s-f"><svg><use href="#i-home"/></svg>
+      <select aria-label="Property type"><option>Any property</option><option>Detached</option><option>Condo &amp; townhome</option><option>Luxury</option><option>Investment / multi-unit</option></select></div>
+    <div class="s-f"><svg><use href="#i-tag"/></svg>
+      <select aria-label="Type"><option>For sale</option><option>Recently sold</option><option>For lease</option></select></div>
+  </form>
+  <div class="wrap">
+    <div class="hero-meta">
+      <span><span class="stars">★★★★★</span>Reviews from real clients</span>
+      <span>7+ years in real estate</span>
+      <span>Office in St. Catharines · Serving the Niagara Region</span>
     </div>
   </div>
 </section>
 
+<!-- QUOTE STRIP -->
+<div class="quotes" aria-label="Client review highlights"><div class="q-track" id="qTrack"></div></div>
+
 <!-- ABOUT -->
 <section class="section" id="about">
-  <div class="wrap">
-    <div class="about-card reveal">
-      <div class="about-visual"><img src="assets/logo-stacked-navy.png" alt="Rob Vettese logo" width="1296" height="1210" loading="lazy" decoding="async"></div>
-      <div class="about-body">
-        <span class="eyebrow">Meet Rob</span>
-        <h2>Hi, I'm Rob. Let's talk about your goals.</h2>
-        <p>Buying, selling, or investing in property is a major step, and you deserve a trusted advisor who knows the Niagara Region well. With 7+ years of experience, I’ve guided clients through a wide range of transactions, from first-time homebuyers to luxury property sales, and I take the time to explain every step so you feel confident in your decisions.</p>
-        <p>I advocate on your behalf as your strategic advisor, skilled negotiator, and dedicated project manager, managing the details and protecting your interests from our first conversation to closing day. Let’s talk about your goals. Call or message me today.</p>
-        <div class="roles"><span>Strategic advisor</span><span>Skilled negotiator</span><span>Project manager</span></div>
-        <div class="btn-row">
-          <a href="#contact" class="btn">Let's talk<svg><use href="#i-arrow"/></svg></a>
-          <a href="https://www.instagram.com/robvettese/" target="_blank" rel="noopener" class="btn ghost"><svg><use href="#i-ig"/></svg>@robvettese</a>
-        </div>
+  <div class="wrap about">
+    <div class="portrait img rv-up">
+      <img src="assets/rob-vettese-headshot.jpg" alt="Rob Vettese, real estate agent with RE/MAX Niagara Realty Ltd., Brokerage, St. Catharines" width="1011" height="1100" decoding="async">
+      <div class="namecard">
+        <div><strong>Rob Vettese</strong><span>Real Estate Agent · RE/MAX Niagara Realty Ltd., Brokerage</span></div>
+        <a href="https://www.instagram.com/robvettese/" target="_blank" rel="noopener" aria-label="Rob on Instagram"><svg><use href="#i-ig"/></svg></a>
+      </div>
+    </div>
+    <div class="about-body rv-up">
+      <span class="eyebrow">About me</span>
+      <h2>A trusted advisor who knows Niagara well</h2>
+      <p>Buying, selling, or investing in property is a major step, and you deserve a trusted advisor who knows the Niagara Region well. With 7+ years of experience, I’ve guided clients through a wide range of transactions, from first-time homebuyers to luxury property sales, and I take the time to explain every step so you feel confident in your decisions.</p>
+      <hr class="rule">
+      <h3>How I work</h3>
+      <p>I advocate on your behalf as your strategic advisor, skilled negotiator, and dedicated project manager, managing the details and protecting your interests from our first conversation to closing day. Let’s talk about your goals. Call or message me today.</p>
+      <ul class="dots">
+        <li>Honest advice grounded in local market data</li>
+        <li>Negotiation focused on protecting your interests</li>
+        <li>Every detail managed, from first conversation to closing day</li>
+        <li>An investor's perspective on numbers and rental potential</li>
+      </ul>
+      <div class="btns">
+        <a href="#contact" class="btn">Let's talk<svg><use href="#i-arrow"/></svg></a>
+        <a href="#reviews" class="btn line">Client reviews</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PATHS -->
-<section class="section tight-top">
+<section class="section pt0">
   <div class="wrap">
-    <div class="head center reveal">
-      <span class="eyebrow">How can I help?</span>
-      <h2>Where are you in your real estate journey?</h2>
-      <p>Pick the path that fits. Each one starts with a simple, no-pressure conversation.</p>
+    <div class="sh rv-up">
+      <div><span class="eyebrow">How I can help</span><h2>Where are you in your real estate journey?</h2></div>
+      <p class="lead">Each path starts with a simple, no-pressure conversation about your goals.</p>
     </div>
-    <div class="path-grid">
-      <a href="#guides" data-guide="buy" class="path reveal">
-        <div class="path-ico"><svg><use href="#i-key"/></svg></div>
-        <h3>Buying</h3>
-        <p>First home or next home, I'll help you understand the market, the numbers and the process before you make an offer.</p>
-        <span class="link">The buying process<svg><use href="#i-arrow"/></svg></span>
+    <div class="paths">
+      <a href="#guides" data-guide="buy" class="path rv-up">
+        <div class="img shade" data-slot="buy" data-label="Stock image · Buying — interior"><img src="assets/photos/buy.jpg" alt="Couple looking at a home they are interested in buying" loading="lazy" decoding="async"></div>
+        <small>01</small><h3>Buying</h3>
+        <p>First home or next home, understand the market, the numbers and the process before you make an offer.</p>
+        <span class="go">The buying process<i><svg><use href="#i-arrow"/></svg></i></span>
       </a>
-      <a href="#guides" data-guide="sell" class="path dark reveal">
-        <img class="bg" src="assets/monogram-light.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <div class="path-ico"><svg><use href="#i-sign"/></svg></div>
-        <h3>Selling</h3>
-        <p>Honest pricing advice based on what's actually selling nearby, a plan to get your home ready, and regular updates along the way.</p>
-        <span class="link">The selling process<svg><use href="#i-arrow"/></svg></span>
+      <a href="#guides" data-guide="sell" class="path rv-up">
+        <div class="img shade" data-slot="sell" data-label="Stock image · Selling — exterior"><img src="assets/photos/sell.jpg" alt="Exterior of a modern farmhouse-style home" loading="lazy" decoding="async"></div>
+        <small>02</small><h3>Selling</h3>
+        <p>Honest pricing based on what's actually selling nearby, a plan to get your home ready, and regular updates.</p>
+        <span class="go">The selling process<i><svg><use href="#i-arrow"/></svg></i></span>
       </a>
-      <a href="#investing" class="path reveal">
-        <div class="path-ico"><svg><use href="#i-chart"/></svg></div>
-        <h3>Investing</h3>
-        <p>I invest in real estate myself, so we can look at timing, rates and rental numbers together before you commit.</p>
-        <span class="link">Investing with Rob<svg><use href="#i-arrow"/></svg></span>
+      <a href="#investing" class="path rv-up">
+        <div class="img shade" data-slot="invest" data-label="Stock image · Investing — multi-unit"><img src="assets/photos/invest.jpg" alt="Multi-unit residential buildings" loading="lazy" decoding="async"></div>
+        <small>03</small><h3>Investing</h3>
+        <p>Look at timing, rates and rental numbers together with someone who invests in real estate himself.</p>
+        <span class="go">Investing with Rob<i><svg><use href="#i-arrow"/></svg></i></span>
       </a>
     </div>
   </div>
 </section>
 
 <!-- LISTINGS -->
-<section class="section tight-top" id="listings">
+<section class="section pt0" id="listings">
   <div class="wrap">
-    <div class="split-head reveal">
-      <div class="head">
-        <span class="eyebrow">Listings</span>
-        <h2>Featured properties</h2>
-        <p>Current listings across the Niagara Region.</p>
-      </div>
-      <a href="#contact" data-interest="Listing alerts" class="btn ghost">Get listing alerts</a>
+    <div class="sh rv-up">
+      <div><span class="eyebrow">Listings</span><h2>Featured properties</h2></div>
+      <p class="lead">Current listings across St. Catharines and the Niagara Region.</p>
     </div>
-    <div class="list-grid">
-      <article class="listing reveal">
-        <div class="listing-img"><span class="badge brass">For sale</span><img src="assets/monogram-light.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="listing-body"><h3>Featured listing</h3><div class="skel" style="width:70%"></div><div class="skel" style="width:45%"></div>
-          <div class="feat"><span><svg><use href="#i-bed"/></svg>— bd</span><span><svg><use href="#i-bath"/></svg>— ba</span><span><svg><use href="#i-area"/></svg>— sqft</span></div></div>
+    <div class="listings">
+      <article class="lst rv-up">
+        <div class="img" data-slot="listing-1" data-label="Listing photo"><img src="assets/photos/listing-1.jpg" alt="Sample listing photo: modern home at dusk" loading="lazy" decoding="async">
+          <div class="chips"><span><svg><use href="#i-tag"/></svg>Coming soon</span><span><svg><use href="#i-area"/></svg>— sqft</span><span><svg><use href="#i-bed"/></svg>—</span><span><svg><use href="#i-bath"/></svg>—</span></div>
+        </div>
+        <h3>Featured listing</h3><p>Sample photo · MLS® listings coming soon</p>
       </article>
-      <article class="listing reveal">
-        <div class="listing-img"><span class="badge">New</span><img src="assets/monogram-light.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="listing-body"><h3>Featured listing</h3><div class="skel" style="width:62%"></div><div class="skel" style="width:40%"></div>
-          <div class="feat"><span><svg><use href="#i-bed"/></svg>— bd</span><span><svg><use href="#i-bath"/></svg>— ba</span><span><svg><use href="#i-area"/></svg>— sqft</span></div></div>
+      <article class="lst rv-up">
+        <div class="img" data-slot="listing-2" data-label="Listing photo"><img src="assets/photos/listing-2.jpg" alt="Sample listing photo: home lit at night" loading="lazy" decoding="async">
+          <div class="chips"><span><svg><use href="#i-tag"/></svg>Coming soon</span><span><svg><use href="#i-area"/></svg>— sqft</span><span><svg><use href="#i-bed"/></svg>—</span><span><svg><use href="#i-bath"/></svg>—</span></div>
+        </div>
+        <h3>Featured listing</h3><p>Sample photo · MLS® listings coming soon</p>
       </article>
-      <article class="listing reveal">
-        <div class="listing-img"><span class="badge">Investment</span><img src="assets/monogram-light.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="listing-body"><h3>Featured listing</h3><div class="skel" style="width:74%"></div><div class="skel" style="width:50%"></div>
-          <div class="feat"><span><svg><use href="#i-bed"/></svg>— bd</span><span><svg><use href="#i-bath"/></svg>— ba</span><span><svg><use href="#i-area"/></svg>— sqft</span></div></div>
+      <article class="lst rv-up">
+        <div class="img" data-slot="listing-3" data-label="Listing photo"><img src="assets/photos/listing-3.jpg" alt="Sample listing photo: brick and stone home at dusk" loading="lazy" decoding="async">
+          <div class="chips"><span><svg><use href="#i-tag"/></svg>Coming soon</span><span><svg><use href="#i-area"/></svg>— sqft</span><span><svg><use href="#i-bed"/></svg>—</span><span><svg><use href="#i-bath"/></svg>—</span></div>
+        </div>
+        <h3>Featured listing</h3><p>Sample photo · MLS® listings coming soon</p>
       </article>
     </div>
-    <p class="mls-note"><i></i>Live MLS® listings are coming soon. Until then, tell me what you're looking for and I'll send you matching homes.</p>
+    <div class="mls rv-up">
+      <p>Live MLS® listings are coming soon. Until then, tell me what you're looking for and I'll send you matching homes.</p>
+      <a href="#resources" class="btn line">Get listing alerts<svg><use href="#i-arrow"/></svg></a>
+    </div>
   </div>
 </section>
 
 <!-- GUIDES -->
-<section class="section tight-top" id="guides">
+<section class="band" id="guides">
   <div class="wrap">
-    <div class="guide-wrap reveal">
-      <div class="guide-top">
-        <div>
-          <span class="eyebrow">Step by step</span>
-          <h2>What to expect, start to finish</h2>
-        </div>
-        <div class="seg" role="tablist">
-          <button type="button" class="on" data-g="buy">Buying</button>
-          <button type="button" data-g="sell">Selling</button>
-        </div>
-      </div>
-
-      <div class="guide on" id="g-buy">
-        <div class="g-step"><b>01</b><h3>Talk about your goals</h3><p>Budget, must-haves, neighbourhoods and timing. We figure out what really matters to you.</p></div>
-        <div class="g-step"><b>02</b><h3>Get pre-approved</h3><p>Speak with a lender or mortgage broker so you know your price range before you start touring.</p></div>
-        <div class="g-step"><b>03</b><h3>Search &amp; tour</h3><p>I'll send you homes that fit, book showings, and give you my honest take on each one.</p></div>
-        <div class="g-step"><b>04</b><h3>Offer &amp; negotiate</h3><p>We review comparable sales together, decide on price and conditions, and I negotiate for you.</p></div>
-        <div class="g-step"><b>05</b><h3>Conditions to closing</h3><p>Inspection, financing and paperwork. I keep everything on track and keep you informed until you get the keys.</p></div>
-      </div>
-
-      <div class="guide" id="g-sell">
-        <div class="g-step"><b>01</b><h3>Pricing consultation</h3><p>I'll walk you through recent nearby sales and give you a realistic price range for today's market.</p></div>
-        <div class="g-step"><b>02</b><h3>Get market-ready</h3><p>We decide what's worth fixing. If you need trades, I can connect you with contractors I trust.</p></div>
-        <div class="g-step"><b>03</b><h3>List &amp; show</h3><p>Your home goes on MLS®, and I manage showings and share feedback with you along the way.</p></div>
-        <div class="g-step"><b>04</b><h3>Review offers</h3><p>We go over every offer together, terms as well as price, and I negotiate to protect your interests.</p></div>
-        <div class="g-step"><b>05</b><h3>Sold to closed</h3><p>I handle the details through conditions and closing and keep you updated at every step.</p></div>
-      </div>
-
-      <div class="guide-foot">
-        <p>Every move is different. These steps give you a feel for the process, and we'll tailor it to your situation.</p>
-        <a href="#contact" class="btn">Book a consultation<svg><use href="#i-arrow"/></svg></a>
-      </div>
+    <div class="sh rv-up">
+      <div><span class="eyebrow">Step by step</span><h2>What to expect, start to finish</h2></div>
+      <div style="justify-self:end"><div class="seg" role="tablist"><button type="button" class="on" data-g="buy">Buying</button><button type="button" data-g="sell">Selling</button></div></div>
+    </div>
+    <div class="guide on" id="g-buy">
+      <div class="g"><b>01</b><h3>Talk about your goals</h3><p>Budget, must-haves, neighbourhoods and timing. We figure out what really matters to you.</p></div>
+      <div class="g"><b>02</b><h3>Get pre-approved</h3><p>Speak with a lender or mortgage broker so you know your price range before you start touring.</p></div>
+      <div class="g"><b>03</b><h3>Search &amp; tour</h3><p>I'll send you homes that fit, book showings, and give you my honest take on each one.</p></div>
+      <div class="g"><b>04</b><h3>Offer &amp; negotiate</h3><p>We review comparable sales together, decide on price and conditions, and I negotiate for you.</p></div>
+      <div class="g"><b>05</b><h3>Conditions to closing</h3><p>Inspection, financing and paperwork. I keep everything on track and keep you informed until you get the keys.</p></div>
+    </div>
+    <div class="guide" id="g-sell">
+      <div class="g"><b>01</b><h3>Pricing consultation</h3><p>I'll walk you through recent nearby sales and give you a realistic price range for today's market.</p></div>
+      <div class="g"><b>02</b><h3>Get market-ready</h3><p>We decide what's worth fixing. If you need trades, I can connect you with contractors I trust.</p></div>
+      <div class="g"><b>03</b><h3>List &amp; show</h3><p>Your home goes on MLS®, and I manage showings and share feedback with you along the way.</p></div>
+      <div class="g"><b>04</b><h3>Review offers</h3><p>We go over every offer together, terms as well as price, and I negotiate to protect your interests.</p></div>
+      <div class="g"><b>05</b><h3>Sold to closed</h3><p>I handle the details through conditions and closing and keep you updated at every step.</p></div>
+    </div>
+    <div class="band-foot rv-up">
+      <p>Every move is different. These steps give you a feel for the process, and we'll tailor it to your situation.</p>
+      <a href="#contact" class="btn">Book a consultation<svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- INVESTING -->
-<section class="section tight-top" id="investing">
-  <div class="wrap inv">
-    <div class="inv-intro reveal">
-      <img class="bg" src="assets/monogram-light.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+<section class="section" id="investing">
+  <div class="wrap split">
+    <div class="img tall rv-up" data-slot="investing" data-label="Stock image · Investing — architecture / detail"><img src="assets/photos/investing.jpg" alt="Modern glass building facade" loading="lazy" decoding="async"></div>
+    <div class="rv-up">
       <span class="eyebrow">Investing</span>
       <h2>Advice from someone who invests too</h2>
-      <p>I've been a real estate investor myself, so I look at a property the way you will: the numbers, the rental potential, and what it will take to get it ready.</p>
-      <p>Whether it's your first rental or you're adding to a portfolio, we'll look at the data together before you decide.</p>
-      <div class="btn-row">
-        <a href="#contact" data-interest="Investing" class="btn brass">Talk investing<svg><use href="#i-arrow"/></svg></a>
+      <p class="lead">I've been a real estate investor myself, so I look at a property the way you will: the numbers, the rental potential, and what it will take to get it ready. Whether it's your first rental or you're adding to a portfolio, we'll look at the data together before you decide.</p>
+      <div class="cols2">
+        <div><h4>Investment support</h4><ul><li>Running the numbers on a property</li><li>Timing, rates and market trends</li><li>Finding rental properties</li><li>Tenant screening and placement</li><li>Selling an investment property</li></ul></div>
+        <div><h4>Renovations &amp; trades</h4><ul><li>Connections to trusted contractors</li><li>Getting a property market-ready</li><li>Renovation help when buying</li><li>Other professionals when needed</li></ul></div>
       </div>
-    </div>
-    <div class="inv-cols">
-      <div class="inv-col reveal">
-        <h3><i><svg><use href="#i-chart"/></svg></i>Investment support</h3>
-        <ul class="ticks">
-          <li>Running the numbers on a property</li>
-          <li>Timing, rates and market trends</li>
-          <li>Finding rental properties</li>
-          <li>Tenant screening and placement</li>
-          <li>Selling an investment property</li>
-          <li>Planning your next purchase</li>
-        </ul>
-        <p class="inv-quote">“Every single tenant paid every months rent on time…” <b>— Jim Ginwalla</b></p>
-      </div>
-      <div class="inv-col reveal">
-        <h3><i><svg><use href="#i-hammer"/></svg></i>Renovations &amp; trades</h3>
-        <ul class="ticks">
-          <li>Connections to trusted contractors</li>
-          <li>Getting a property market-ready</li>
-          <li>Renovation help when buying</li>
-          <li>Other professionals when you need them</li>
-        </ul>
-        <p class="inv-quote">“He was able to connect us with contractors for renovations…” <b>— Kristin Lawrie</b></p>
-      </div>
+      <p class="pull">“Every single tenant paid every months rent on time…” <b>— Jim Ginwalla</b></p>
+      <a href="#contact" data-interest="Investing" class="btn">Talk investing<svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- RESOURCES -->
-<section class="section tight-top" id="resources">
+<section class="section pt0" id="resources">
   <div class="wrap">
-    <div class="head center reveal">
-      <span class="eyebrow">Helpful resources</span>
-      <h2>Tools to help you plan</h2>
-      <p>Free, no obligation. Just ask and I'll get back to you personally.</p>
-    </div>
-    <div class="res-grid">
-      <button class="res reveal" data-interest="Home evaluation" type="button">
-        <div class="svc-ico"><svg><use href="#i-home"/></svg></div>
-        <h3>What's my home worth?</h3>
-        <p>Get a realistic price range based on recent sales near you.</p>
-        <span class="link">Request an evaluation<svg><use href="#i-arrow"/></svg></span>
-      </button>
-      <button class="res reveal" data-interest="Neighbourhood sold prices" type="button">
-        <div class="svc-ico"><svg><use href="#i-tag"/></svg></div>
-        <h3>What did my neighbour sell for?</h3>
-        <p>Curious about a recent sale on your street? I can pull the sold data for you.</p>
-        <span class="link">Ask about a sale<svg><use href="#i-arrow"/></svg></span>
-      </button>
-      <button class="res reveal" data-interest="Listing alerts" type="button">
-        <div class="svc-ico"><svg><use href="#i-bell"/></svg></div>
-        <h3>Listing alerts</h3>
-        <p>Tell me what you're looking for and get new matching listings sent to you.</p>
-        <span class="link">Set up alerts<svg><use href="#i-arrow"/></svg></span>
-      </button>
-      <a class="res reveal" href="#calculator">
-        <div class="svc-ico"><svg><use href="#i-calc"/></svg></div>
-        <h3>Mortgage calculator</h3>
-        <p>Estimate your monthly payment before you start your search.</p>
-        <span class="link">Try the calculator<svg><use href="#i-arrow"/></svg></span>
-      </a>
+    <div class="res">
+      <div class="res-l rv-up">
+        <span class="eyebrow">Resource centre</span>
+        <h2>Tools to help you plan</h2>
+        <p class="lead">Free and no obligation. Ask, and I'll get back to you personally.</p>
+        <button class="r-item" type="button" data-interest="Home evaluation"><span class="r-thumb"><svg><use href="#i-val"/></svg></span><span><h3>What's my home worth?</h3><p>A realistic price range based on recent sales near you.</p></span><span class="circle"><svg><use href="#i-arrow"/></svg></span></button>
+        <button class="r-item" type="button" data-interest="Neighbourhood sold prices"><span class="r-thumb"><svg><use href="#i-sold"/></svg></span><span><h3>What did my neighbour sell for?</h3><p>Curious about a recent sale on your street? I can pull the sold data.</p></span><span class="circle"><svg><use href="#i-arrow"/></svg></span></button>
+        <a class="r-item" href="#calculator"><span class="r-thumb"><svg><use href="#i-calc"/></svg></span><span><h3>Mortgage calculator</h3><p>Estimate your monthly payment before you start your search.</p></span><span class="circle"><svg><use href="#i-arrow"/></svg></span></a>
+        <button class="r-item" type="button" data-interest="Investing"><span class="r-thumb"><svg><use href="#i-chart"/></svg></span><span><h3>Investment property review</h3><p>Thinking about a rental? Let's run the numbers together.</p></span><span class="circle"><svg><use href="#i-arrow"/></svg></span></button>
+      </div>
+      <div class="alert-card img shade rv-up" data-slot="alerts" data-label="Stock image · Lifestyle / interior"><img src="assets/photos/alerts.jpg" alt="Bright, cozy living space with armchair and coffee" loading="lazy" decoding="async">
+        <span class="eyebrow light">Listing alerts</span>
+        <h3>New listings, sent to you first</h3>
+        <p>Tell me what you're looking for and get matching homes in your inbox.</p>
+        <form class="pillform" id="alertForm">
+          <input type="email" required placeholder="Your email address" aria-label="Email address">
+          <button class="btn" type="submit">Subscribe</button>
+        </form>
+        <label class="consent"><input type="checkbox" required><span>Yes, I'd like listing alerts and occasional market updates by email from Rob Vettese, RE/MAX Niagara Realty Ltd., Brokerage, 261 Martindale Rd., Unit 14C, St. Catharines, ON L2W 1A2 · Robv@remaxniagara.ca. I can unsubscribe at any time. <a href="privacy.html">Privacy Policy</a></span></label>
+        <div class="fmsg" id="alertMsg" role="status"></div>
+      </div>
     </div>
 
-    <div class="calc reveal" id="calculator">
+    <div class="calc rv-up" id="calculator">
       <div class="calc-in">
-        <h3>Mortgage calculator</h3>
-        <p>Move the sliders to see an estimated monthly payment.</p>
-        <div class="range"><div class="range-top"><label for="m-price">Purchase price</label><output id="o-price"></output></div><input type="range" id="m-price" min="200000" max="2500000" step="5000" value="650000"></div>
-        <div class="range"><div class="range-top"><label for="m-down">Down payment</label><output id="o-down"></output></div><input type="range" id="m-down" min="5" max="50" step="1" value="20"></div>
-        <div class="range"><div class="range-top"><label for="m-rate">Interest rate</label><output id="o-rate"></output></div><input type="range" id="m-rate" min="1" max="9" step="0.05" value="4.5"></div>
-        <div class="range" style="margin-bottom:0"><div class="range-top"><label>Amortization</label></div>
-          <div class="amort" id="amort"><button type="button" data-y="20">20 yrs</button><button type="button" class="on" data-y="25">25 yrs</button><button type="button" data-y="30">30 yrs</button></div></div>
+        <span class="eyebrow">Mortgage calculator</span>
+        <h3>Estimate your monthly payment</h3>
+        <p>Move the sliders to see an estimate.</p>
+        <div class="rg"><div class="rg-top"><label for="m-price">Purchase price</label><output id="o-price"></output></div><input type="range" id="m-price" min="200000" max="3000000" step="5000" value="750000"></div>
+        <div class="rg"><div class="rg-top"><label for="m-down">Down payment</label><output id="o-down"></output></div><input type="range" id="m-down" min="5" max="50" step="1" value="20"></div>
+        <div class="rg"><div class="rg-top"><label for="m-rate">Interest rate</label><output id="o-rate"></output></div><input type="range" id="m-rate" min="1" max="9" step="0.05" value="4.5"></div>
+        <div class="rg" style="margin-bottom:0"><div class="rg-top"><label>Amortization</label></div>
+          <div class="amort" id="amort"><button type="button" data-y="20">20 years</button><button type="button" class="on" data-y="25">25 years</button><button type="button" data-y="30">30 years</button></div></div>
       </div>
-      <div class="calc-out">
-        <img class="bg" src="assets/monogram-light.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <small>Estimated payment</small>
+      <div class="calc-out on-dark">
+        <span class="eyebrow">Estimated payment</span>
         <div class="big" id="o-pay">$0</div>
         <div class="per">per month</div>
-        <div class="calc-rows">
+        <div class="crow">
           <div><span>Down payment</span><b id="o-downamt"></b></div>
           <div><span>Mortgage amount</span><b id="o-loan"></b></div>
           <div><span>Total interest over amortization</span><b id="o-int"></b></div>
         </div>
-        <p class="calc-note">Estimate only, using Canadian semi-annual compounding. Doesn't include mortgage default insurance (required with less than 20% down), property taxes, condo fees or closing costs. Talk to a lender or mortgage broker for exact numbers.</p>
+        <p class="cnote">Estimate only, using Canadian semi-annual compounding. Doesn't include mortgage default insurance (required with less than 20% down), property taxes, condo fees or closing costs. Talk to a lender or mortgage broker for exact numbers.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- REVIEWS -->
-<section class="reviews-band" id="reviews">
-  <img class="bg" src="assets/monogram-light.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="wrap" style="position:relative">
-    <div class="split-head reveal">
-      <div class="head">
-        <span class="eyebrow">Client reviews</span>
-        <h2>In my clients' words</h2>
-        <p>Buyers, sellers and investors I've had the chance to work with.</p>
+<section class="reviews on-dark" id="reviews">
+  <div class="wrap rv">
+    <div class="rv-side rv-up">
+      <span class="eyebrow">Client reviews</span>
+      <h2>In my clients' words</h2>
+      <p>Buyers, sellers and investors I've had the chance to work with.</p>
+      <div class="rv-ctl">
+        <button class="circle" type="button" id="rvPrev" aria-label="Previous review"><svg><use href="#i-left"/></svg></button>
+        <button class="circle" type="button" id="rvNext" aria-label="Next review"><svg><use href="#i-right"/></svg></button>
+        <span class="rv-count" aria-live="polite"><b id="rvNum">01</b> / <span id="rvTot">06</span></span>
       </div>
     </div>
-    <div class="rev-grid" id="revGrid"></div>
+    <div class="rv-main" id="rvMain"></div>
   </div>
 </section>
 
 <!-- AREAS -->
 <section class="section" id="areas">
   <div class="wrap">
-    <div class="split-head reveal">
-      <div class="head">
-        <span class="eyebrow">Areas I serve</span>
-        <h2>Across the Niagara Region</h2>
-      </div>
-      <p style="max-width:380px">Not sure which community fits? Ask me about neighbourhoods, prices and what's been selling.</p>
+    <div class="sh rv-up">
+      <div><span class="eyebrow">Areas I serve</span><h2>Across the Niagara Region</h2></div>
+      <p class="lead">Not sure which community fits? Ask me about neighbourhoods, prices and what's been selling.</p>
     </div>
-    <div class="areas reveal">
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>St. Catharines</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Niagara Falls</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Fort Erie</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Ridgeway</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Welland</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Thorold</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Niagara-on-the-Lake</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Port Colborne</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Pelham</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Grimsby</a>
-      <a class="area" href="#contact"><svg><use href="#i-pin"/></svg>Lincoln</a>
+    <div class="img areas-banner rv-up"><img src="assets/photos/areas.jpg" alt="Waterfront homes along the water in the Niagara Region" loading="lazy" decoding="async"></div>
+    <div class="areas rv-up">
+      <a class="area" href="#contact">St. Catharines<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Niagara Falls<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Niagara-on-the-Lake<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Fort Erie<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Ridgeway<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Welland<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Thorold<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Pelham<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Port Colborne<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Grimsby<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Lincoln<svg><use href="#i-arrow"/></svg></a>
+      <a class="area" href="#contact">Elsewhere in Niagara<svg><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="section tight-top" id="faq">
-  <div class="wrap faq-grid">
-    <div class="faq-side reveal">
+<section class="section pt0" id="faq">
+  <div class="wrap faq">
+    <div class="faq-side rv-up">
       <span class="eyebrow">FAQs</span>
       <h2>Have questions?</h2>
       <p>A few I hear often. If yours isn't here, just send me a message.</p>
       <a href="#contact" class="btn">Contact me<svg><use href="#i-arrow"/></svg></a>
     </div>
-    <div class="faq reveal">
-      <div class="qa open"><button aria-expanded="true">How do I know what my home is worth?<span class="plus"></span></button><div class="qa-a"><div><p>I'll look at recent comparable sales and what's currently on the market near you, then give you an honest, realistic price range, not just the number you want to hear.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Do you work with investors?<span class="plus"></span></button><div class="qa-a"><div><p>Yes. I've invested in real estate myself, and I help clients look at timing, rates and rental numbers, find tenants, and sell investment properties when the time comes.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Can you help get my home ready to list?<span class="plus"></span></button><div class="qa-a"><div><p>Yes. We'll talk about what's worth doing before you list, and if you need help, I can connect you with contractors and other professionals I trust.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">I'm a first-time buyer. Where do I start?<span class="plus"></span></button><div class="qa-a"><div><p>Start with a conversation. We'll talk about your budget, must-haves and timeline, and I'll explain each step, from pre-approval to closing day.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">How long does it take to sell a home?<span class="plus"></span></button><div class="qa-a"><div><p>It depends on the home, the price and the market at the time. When we meet, I'll share current local data so you can plan with realistic expectations.</p></div></div></div>
+    <div class="rv-up">
+      <div class="qa open"><button aria-expanded="true">How do I know what my home is worth?<span class="circle"><svg><use href="#i-down"/></svg></span></button><div class="qa-a"><div><p>I'll look at recent comparable sales and what's currently on the market near you, then give you an honest, realistic price range, not just the number you want to hear.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Do you work with investors?<span class="circle"><svg><use href="#i-down"/></svg></span></button><div class="qa-a"><div><p>Yes. I've invested in real estate myself, and I help clients look at timing, rates and rental numbers, find tenants, and sell investment properties when the time comes.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Can you help get my home ready to list?<span class="circle"><svg><use href="#i-down"/></svg></span></button><div class="qa-a"><div><p>Yes. We'll talk about what's worth doing before you list, and if you need help, I can connect you with contractors and other professionals I trust.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">I'm a first-time buyer. Where do I start?<span class="circle"><svg><use href="#i-down"/></svg></span></button><div class="qa-a"><div><p>Start with a conversation. We'll talk about your budget, must-haves and timeline, and I'll explain each step, from pre-approval to closing day.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">How long does it take to sell a home?<span class="circle"><svg><use href="#i-down"/></svg></span></button><div class="qa-a"><div><p>It depends on the home, the price and the market at the time. When we meet, I'll share current local data so you can plan with realistic expectations.</p></div></div></div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section tight-top" id="contact">
-  <div class="wrap contact">
-    <div class="contact-info reveal">
-      <img class="bg" src="assets/monogram-light.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <span class="eyebrow">Let's talk</span>
-      <h2>Let’s talk about your goals</h2>
-      <p>Call or message me today. Whether you're months away or ready now, I'm happy to answer your questions.</p>
-      <div class="c-lines">
-        <a class="c-line" href="tel:+14165400175"><i><svg><use href="#i-phone"/></svg></i><span><small>Call or text</small>+1 (416) 540-0175</span></a>
-        <a class="c-line" href="mailto:Robv@remaxniagara.ca"><i><svg><use href="#i-mail"/></svg></i><span><small>Email</small>Robv@remaxniagara.ca</span></a>
-        <a class="c-line" href="https://www.instagram.com/robvettese/" target="_blank" rel="noopener"><i><svg><use href="#i-ig"/></svg></i><span><small>Instagram</small>@robvettese</span></a>
-        <div class="c-line"><i><svg><use href="#i-pin"/></svg></i><span><small>Office</small>RE/MAX Niagara Realty Ltd., Brokerage<br>261 Martindale Rd., Unit 14C, St. Catharines, ON</span></div>
+<section class="section pt0" id="contact">
+  <div class="wrap">
+    <div class="sh center rv-up">
+      <div><span class="eyebrow">Contact</span><h2>Let’s talk about your goals</h2></div>
+      <p class="lead">Call or message me today. Whether you're months away or ready now, I'm happy to answer your questions.</p>
+    </div>
+    <div class="ct">
+      <div class="ct-card img shade rv-up" data-slot="contact" data-label="Stock image · St. Catharines / Niagara"><img src="assets/photos/contact.jpg" alt="Waterfall and historic mill in autumn, Niagara Escarpment" loading="lazy" decoding="async">
+        <span class="eyebrow light">St. Catharines office</span>
+        <h3>RE/MAX Niagara Realty Ltd., Brokerage</h3>
+        <p>Meet in person at the office, at your home, or wherever is easiest for you.</p>
+        <div class="ct-lines">
+          <div><svg><use href="#i-pin"/></svg>261 Martindale Rd., Unit 14C, St. Catharines, ON L2W 1A2</div>
+          <a href="tel:+14165400175"><svg><use href="#i-phone"/></svg>+1 (416) 540-0175</a>
+          <a href="mailto:Robv@remaxniagara.ca"><svg><use href="#i-mail"/></svg>Robv@remaxniagara.ca</a>
+        </div>
+      </div>
+      <div class="form rv-up">
+        <h3>Send me a message</h3>
+        <p>I'll get back to you personally.</p>
+        <form id="contactForm">
+          <div class="fg">
+            <div class="fi"><label for="c-name">Full name</label><input id="c-name" required autocomplete="name" placeholder="Your name"></div>
+            <div class="fi"><label for="c-email">Email address</label><input id="c-email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
+            <div class="fi"><label for="c-phone">Phone number</label><input id="c-phone" type="tel" autocomplete="tel" placeholder="(905) 000-0000"></div>
+            <div class="fi"><label for="c-int">I'm interested in</label>
+              <select id="c-int"><option>Buying</option><option>Selling</option><option>Investing</option><option>Home evaluation</option><option>Neighbourhood sold prices</option><option>Listing alerts</option><option>Something else</option></select></div>
+            <div class="fi full"><label for="c-msg">Message</label><textarea id="c-msg" placeholder="Tell me a little about your goals and timeline…"></textarea></div>
+          </div>
+          <label class="consent"><input type="checkbox" required><span>I agree that Rob Vettese and RE/MAX Niagara Realty Ltd., Brokerage may use the information I've provided to respond to my inquiry, as described in the <a href="privacy.html">Privacy Policy</a>.</span></label>
+          <label class="consent"><input type="checkbox" id="c-mkt"><span>Optional: Yes, I'd like to receive emails from Rob Vettese, RE/MAX Niagara Realty Ltd., Brokerage (261 Martindale Rd., Unit 14C, St. Catharines, ON L2W 1A2, Robv@remaxniagara.ca, +1 416-540-0175), such as listing alerts and market updates. I can unsubscribe at any time.</span></label>
+          <button class="btn" type="submit">Send message<svg><use href="#i-arrow"/></svg></button>
+          <div class="fmsg" id="contactMsg" role="status"></div>
+        </form>
       </div>
     </div>
-    <div class="form-card reveal">
-      <h3>Send me a message</h3>
-      <p>I'll get back to you personally.</p>
-      <form id="contactForm">
-        <div class="fgrid">
-          <div class="in"><label for="c-name">Name</label><input id="c-name" required autocomplete="name"></div>
-          <div class="in"><label for="c-phone">Phone</label><input id="c-phone" type="tel" autocomplete="tel"></div>
-          <div class="in full"><label for="c-email">Email</label><input id="c-email" type="email" required autocomplete="email"></div>
-          <div class="in full"><label for="c-int">I'm interested in</label>
-            <select id="c-int">
-              <option>Buying</option>
-              <option>Selling</option>
-              <option>Investing</option>
-              <option>Home evaluation</option>
-              <option>Neighbourhood sold prices</option>
-              <option>Listing alerts</option>
-              <option>Something else</option>
-            </select></div>
-          <div class="in full"><label for="c-msg">Message</label><textarea id="c-msg" placeholder="Tell me a little about your goals and timeline…"></textarea></div>
-        </div>
-        <label class="consent"><input type="checkbox" id="c-ack" required><span>I agree that Rob Vettese and RE/MAX Niagara Realty Ltd., Brokerage may use the information I've provided to respond to my inquiry, as described in the <a href="privacy.html">Privacy Policy</a>.</span></label>
-        <label class="consent"><input type="checkbox" id="c-mkt"><span>Optional: Yes, I'd like to receive emails from Rob Vettese, RE/MAX Niagara Realty Ltd., Brokerage (261 Martindale Rd., Unit 14C, St. Catharines, ON L2W 1A2, Robv@remaxniagara.ca, +1 416-540-0175), such as listing alerts and market updates. I can unsubscribe at any time.</span></label>
-        <button class="btn brass" type="submit">Send message<svg><use href="#i-arrow"/></svg></button>
-        <div class="form-msg" id="contactMsg" role="status"></div>
-      </form>
+
+    <div class="direct">
+      <div class="sh rv-up" style="margin-bottom:0;padding-bottom:40px">
+        <h2>Reach out directly</h2>
+        <p class="lead">Prefer to skip the form? Call, text, email or send me a message on Instagram.</p>
+      </div>
+      <div class="direct-grid">
+        <a class="dc rv-up" href="tel:+14165400175"><i><svg><use href="#i-phone"/></svg></i><h3>Call or text</h3><p>The quickest way to reach me.</p><span>+1 (416) 540-0175<svg><use href="#i-right"/></svg></span></a>
+        <a class="dc rv-up" href="mailto:Robv@remaxniagara.ca"><i><svg><use href="#i-mail"/></svg></i><h3>Email</h3><p>For detailed questions or documents.</p><span>Robv@remaxniagara.ca<svg><use href="#i-right"/></svg></span></a>
+        <a class="dc rv-up" href="https://www.instagram.com/robvettese/" target="_blank" rel="noopener"><i><svg><use href="#i-ig"/></svg></i><h3>Instagram</h3><p>Follow along or send a direct message.</p><span>@robvettese<svg><use href="#i-right"/></svg></span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -1091,30 +999,28 @@ section[id],#calculator,#top{scroll-margin-top:96px}
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-card">
+  <div class="f on-dark">
     <div class="wrap">
       <div class="f-top">
-        <div>
-          <img src="assets/logo-horizontal-light.png" alt="Rob Vettese" width="1662" height="444" loading="lazy" decoding="async">
-          <p>Rob Vettese, Real Estate Agent with RE/MAX Niagara Realty Ltd., Brokerage, helping buyers, sellers and investors across the Niagara Region.</p>
-          <div class="social">
-            <a href="https://www.instagram.com/robvettese/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
-          </div>
-        </div>
-        <div>
-          <h4>Explore</h4>
-          <ul><li><a href="#about">About</a></li><li><a href="#listings">Listings</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#areas">Areas</a></li><li><a href="#faq">FAQs</a></li></ul>
-        </div>
-        <div>
-          <h4>Resources</h4>
-          <ul><li><a href="#guides" data-guide="buy">Buying process</a></li><li><a href="#guides" data-guide="sell">Selling process</a></li><li><a href="#investing">Investing</a></li><li><a href="#contact" data-interest="Home evaluation">Home evaluation</a></li><li><a href="#calculator">Mortgage calculator</a></li></ul>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <ul><li><a href="tel:+14165400175">+1 (416) 540-0175</a></li><li><a href="mailto:Robv@remaxniagara.ca">Robv@remaxniagara.ca</a></li><li>RE/MAX Niagara Realty Ltd., Brokerage<br>261 Martindale Rd., Unit 14C<br>St. Catharines, ON L2W 1A2</li></ul>
-        </div>
+        <h2>Niagara market insights, in your inbox</h2>
+        <form id="newsForm">
+          <div class="pillform"><input type="email" required placeholder="Your email address" aria-label="Email address"><button class="btn" type="submit">Subscribe</button></div>
+          <label class="consent"><input type="checkbox" required><span>Yes, I'd like market updates by email from Rob Vettese, RE/MAX Niagara Realty Ltd., Brokerage, 261 Martindale Rd., Unit 14C, St. Catharines, ON L2W 1A2 · Robv@remaxniagara.ca. I can unsubscribe at any time.</span></label>
+          <div class="fmsg" id="newsMsg" role="status"></div>
+        </form>
       </div>
-      <div class="f-bottom">
+      <div class="f-mid">
+        <div class="f-card">
+          <h3>Thinking of selling?</h3>
+          <p>Find out what your home could be worth in today's market, with no obligation.</p>
+          <div class="btns"><a href="#contact" data-interest="Home evaluation" class="btn cream sm">Home evaluation</a><a href="#contact" class="btn line-light sm">Book a consultation</a></div>
+          <div class="row"><img src="assets/logo-horizontal-light.png" alt="Rob Vettese" width="1662" height="444" loading="lazy" decoding="async"><a href="https://www.instagram.com/robvettese/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a></div>
+        </div>
+        <div><h4>Explore</h4><ul><li><a href="#about">About</a></li><li><a href="#listings">Listings</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#areas">Areas</a></li><li><a href="#faq">FAQs</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div><h4>Resources</h4><ul><li><a href="#guides" data-guide="buy">Buying process</a></li><li><a href="#guides" data-guide="sell">Selling process</a></li><li><a href="#investing">Investing</a></li><li><a href="#contact" data-interest="Home evaluation">Home evaluation</a></li><li><a href="#calculator">Mortgage calculator</a></li></ul></div>
+        <div><h4>Contact</h4><ul><li><a href="tel:+14165400175">+1 (416) 540-0175</a></li><li><a href="mailto:Robv@remaxniagara.ca">Robv@remaxniagara.ca</a></li><li>RE/MAX Niagara Realty Ltd., Brokerage<br>261 Martindale Rd., Unit 14C<br>St. Catharines, ON L2W 1A2</li></ul></div>
+      </div>
+      <div class="f-legal">
         <p>© <span id="yr">2026</span> Rob Vettese, Real Estate Agent, RE/MAX Niagara Realty Ltd., Brokerage, 261 Martindale Rd., Unit 14C, St. Catharines, ON L2W 1A2. Each office independently owned and operated. Not intended to solicit buyers or sellers currently under contract. The trademarks REALTOR®, REALTORS® and the REALTOR® logo are controlled by The Canadian Real Estate Association (CREA) and identify real estate professionals who are members of CREA. The trademarks MLS®, Multiple Listing Service® and the associated logos are owned by CREA.</p>
         <nav class="legal-links" aria-label="Legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="accessibility.html">Accessibility</a></nav>
       </div>
@@ -1145,33 +1051,40 @@ section[id],#calculator,#top{scroll-margin-top:96px}
     {name:"Advanced Exhibitions",meta:"Seller · 2026",title:"Sold within three weeks",text:[
       "Working with Rob to sell my property was a great experience. He's professional, reliable, and always on top of market trends. Selling in 2026 wasn't easy, but Rob sold my home within three weeks at the price he had promised. When issues came up, he handled them quickly and kept them from becoming bigger problems. He also connected me with trusted contractors who got the property market-ready fast. I highly recommend him!"]}
   ];
+  var pulls=[
+    {q:"His professionalism was absolutely amazing from start to finish.",n:"Teresa Buckle",m:"Seller · Ridgeway"},
+    {q:"He is really data driven and highly experienced in the local market.",n:"Jainil Sanghvi",m:"Investor · Niagara"},
+    {q:"Buying a home can be overwhelming, but Rob made it look easy.",n:"Keydler Garcia",m:"Buyer"},
+    {q:"He worked hard for us in this market and made sure that we got the best deal possible.",n:"Jim Ginwalla",m:"Investment property owner"},
+    {q:"He truly puts his clients first and is someone you can trust!",n:"Kristin Lawrie",m:"Seller & buyer"},
+    {q:"He's professional, reliable, and always on top of market trends.",n:"Advanced Exhibitions",m:"Seller"}
+  ];
   var esc=function(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML};
-  var initials=function(n){return n.split(/\s+/).map(function(w){return w[0]}).slice(0,2).join('').toUpperCase()};
-  var grid=document.getElementById('revGrid');
-  grid.innerHTML=reviews.map(function(r){
-    return '<article class="rev reveal"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><h3>“'+esc(r.title)+'”</h3><div class="rev-text">'+r.text.map(function(t){return '<p>'+esc(t)+'</p>'}).join('')+'</div><button class="more" type="button" hidden>Read full review</button><div class="who"><div class="avatar">'+initials(r.name)+'</div><div><strong>'+esc(r.name)+'</strong><span>'+esc(r.meta)+'</span></div></div></article>';
+  var ini=function(n){return n.split(/\s+/).map(function(w){return w[0]}).slice(0,2).join('').toUpperCase()};
+
+  // Quote strip (duplicated for seamless loop)
+  var qh=pulls.map(function(p){return '<div class="q"><blockquote>“'+esc(p.q)+'”</blockquote><div class="who"><div class="av">'+ini(p.n)+'</div><div><strong>'+esc(p.n)+'</strong><span>'+esc(p.m)+'</span></div></div></div>'}).join('');
+  var qt=document.getElementById('qTrack');qt.innerHTML=qh+qh;
+  qt.querySelectorAll('.q').forEach(function(el,i){if(i>=pulls.length)el.setAttribute('aria-hidden','true')});
+
+  // Reviews carousel
+  var main=document.getElementById('rvMain');
+  main.innerHTML=reviews.map(function(r,i){
+    return '<article class="slide'+(i===0?' on':'')+'" aria-roledescription="slide" aria-label="Review '+(i+1)+' of '+reviews.length+'"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><h3>“'+esc(r.title)+'”</h3><div class="txt">'+r.text.map(function(t){return '<p>'+esc(t)+'</p>'}).join('')+'</div><div class="who"><div class="av">'+ini(r.name)+'</div><div><strong>'+esc(r.name)+'</strong><span>'+esc(r.meta)+'</span></div></div></article>';
   }).join('');
-  function checkClamp(){
-    grid.querySelectorAll('.rev').forEach(function(card){
-      var t=card.querySelector('.rev-text'),b=card.querySelector('.more');
-      if(card.classList.contains('open')){b.hidden=false;return}
-      b.hidden=!(t.scrollHeight>t.clientHeight+4);
-    });
-  }
-  grid.addEventListener('click',function(e){
-    var b=e.target.closest('.more');if(!b)return;
-    var c=b.closest('.rev');c.classList.toggle('open');
-    b.textContent=c.classList.contains('open')?'Show less':'Read full review';
-  });
-  window.addEventListener('load',checkClamp);window.addEventListener('resize',checkClamp);setTimeout(checkClamp,300);
+  var cur=0,slides=main.querySelectorAll('.slide'),pad=function(n){return (n<10?'0':'')+n};
+  document.getElementById('rvTot').textContent=pad(slides.length);
+  function go(i){cur=(i+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('on',k===cur)});document.getElementById('rvNum').textContent=pad(cur+1)}
+  document.getElementById('rvPrev').addEventListener('click',function(){go(cur-1)});
+  document.getElementById('rvNext').addEventListener('click',function(){go(cur+1)});
 
   // Nav
   var nav=document.getElementById('nav'),burger=document.getElementById('burger');
   burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
-  nav.querySelectorAll('.mobile-menu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');burger.setAttribute('aria-expanded',false)})});
+  nav.querySelectorAll('.mmenu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');burger.setAttribute('aria-expanded',false)})});
   var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>10)};window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  // Guides (buy / sell)
+  // Guides
   function showGuide(g){
     document.querySelectorAll('.seg button').forEach(function(b){b.classList.toggle('on',b.dataset.g===g)});
     document.querySelectorAll('.guide').forEach(function(el){el.classList.toggle('on',el.id==='g-'+g)});
@@ -1190,15 +1103,18 @@ section[id],#calculator,#top{scroll-margin-top:96px}
   })});
 
   // FAQ
-  document.querySelectorAll('.qa button').forEach(function(b){
+  document.querySelectorAll('.qa > button').forEach(function(b){
     b.addEventListener('click',function(){var q=b.parentElement,o=q.classList.toggle('open');b.setAttribute('aria-expanded',o)});
   });
 
-  // Search → listings (MLS integration placeholder)
+  // Search → listings (MLS placeholder)
   document.getElementById('search').addEventListener('submit',function(e){e.preventDefault();document.getElementById('listings').scrollIntoView({behavior:'smooth'})});
 
-  // Contact form (not yet connected to a backend)
-  document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('contactMsg').textContent="Thanks! This form will be connected when the site goes live. For now, please call (416) 540-0175 or email Robv@remaxniagara.ca.";});
+  // Forms (not yet connected to a backend)
+  function stub(formId,msgId,text){document.getElementById(formId).addEventListener('submit',function(e){e.preventDefault();document.getElementById(msgId).textContent=text})}
+  stub('contactForm','contactMsg',"Thanks! This form will be connected when the site goes live. For now, please call (416) 540-0175 or email Robv@remaxniagara.ca.");
+  stub('alertForm','alertMsg',"Thanks! Listing alerts will be connected when the site goes live.");
+  stub('newsForm','newsMsg',"Thanks! Sign-ups will be connected when the site goes live.");
 
   // Mortgage calculator (Canadian fixed-rate: semi-annual compounding, monthly payments)
   var $=function(id){return document.getElementById(id)};
@@ -1206,10 +1122,9 @@ section[id],#calculator,#top{scroll-margin-top:96px}
   var years=25;
   function calc(){
     var price=+$('m-price').value,downPct=+$('m-down').value,rate=+$('m-rate').value/100;
-    var down=price*downPct/100,loan=price-down,n=years*12;
-    var i=Math.pow(1+rate/2,1/6)-1;
+    var down=price*downPct/100,loan=price-down,n=years*12,i=Math.pow(1+rate/2,1/6)-1;
     var pay=i>0?loan*i/(1-Math.pow(1+i,-n)):loan/n;
-    $('o-price').textContent=money(price);$('o-down').textContent=downPct+'%';$('o-rate').textContent=rate*100%1?(rate*100).toFixed(2)+'%':(rate*100)+'%';
+    $('o-price').textContent=money(price);$('o-down').textContent=downPct+'%';$('o-rate').textContent=(rate*100).toFixed(2)+'%';
     $('o-pay').textContent=money(pay);$('o-downamt').textContent=money(down);$('o-loan').textContent=money(loan);$('o-int').textContent=money(pay*n-loan);
   }
   ['m-price','m-down','m-rate'].forEach(function(id){$(id).addEventListener('input',calc)});
@@ -1218,10 +1133,10 @@ section[id],#calculator,#top{scroll-margin-top:96px}
 
   document.getElementById('yr').textContent=new Date().getFullYear();
 
-  // Reveal
-  var els=document.querySelectorAll('.reveal');
+  // Reveal on scroll
+  var els=document.querySelectorAll('.rv-up');
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
     els.forEach(function(el){io.observe(el)});
   } else els.forEach(function(el){el.classList.add('in')});
 })();
