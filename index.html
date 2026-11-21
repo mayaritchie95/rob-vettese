@@ -27,7 +27,7 @@
 <meta name="twitter:image" content="https://YOURDOMAIN.ca/assets/og-image.jpg">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preload" as="image" href="assets/photos/hero.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/photos/hero-1600.jpg" imagesrcset="assets/photos/hero-900.jpg 900w, assets/photos/hero-1600.jpg 1600w, assets/photos/hero.jpg 2400w" imagesizes="100vw" fetchpriority="high">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -198,7 +198,8 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --navy:#1B2A41;--navy-2:#22344E;--navy-3:#2C405D;
@@ -675,6 +676,29 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 }
 @media (max-width:640px){.hero-in{padding-left:20px;padding-right:20px}}
 @media (prefers-reduced-motion:reduce){.anim{animation:none;opacity:1;transform:none}.hero-media > img{animation:none}.seg-ind,.guide .g,.slide,.g::before{transition:none!important}}
+
+/* v6: speed first — hero shows instantly, short interactions */
+.anim{opacity:1!important;transform:none!important;animation:none!important}
+.hero-media > img{animation:none!important}
+.rv-up{transform:translateY(10px);transition:opacity .3s ease-out,transform .3s ease-out!important;transition-delay:0s!important}
+.seg-ind{transition:transform .22s ease-out,width .22s ease-out}
+.guide .g{transform:translateX(10px);transition:opacity .2s ease-out,transform .2s ease-out!important;transition-delay:0s!important}
+.guide.out .g{transform:translateX(-10px)}
+.g::before{transition:transform .3s ease-out}
+.slide{transform:translateX(12px);transition:opacity .22s ease-out,transform .22s ease-out,visibility 0s .22s}
+.slide.left{transform:translateX(-12px)}
+.slide.on{transition:opacity .22s ease-out,transform .22s ease-out,visibility 0s}
+.img > img{transition:transform .5s ease-out}
+.btn,.circle,.area,.dc,.path .go i,.nav-links a::after{transition-duration:.18s!important}
+.qa-a{transition:grid-template-rows .22s ease-out}
+.qa .circle{transition:.2s ease-out}
+/* mobile sticky contact bar (conversion) */
+.mbar{display:none}
+@media (max-width:980px){
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:10px;right:10px;bottom:10px;z-index:70;padding:8px;background:rgba(251,249,244,.97);border:1px solid var(--line);border-radius:var(--pill);box-shadow:0 12px 30px -12px rgba(10,16,28,.45);padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  .mbar .btn{height:46px;width:100%}
+  body{padding-bottom:80px}
+}
 </style>
 </head>
 <body>
@@ -740,7 +764,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-media img">
-    <img src="assets/photos/hero.jpg" alt="Luxury stone home at sunset" fetchpriority="high" decoding="async">
+    <img src="assets/photos/hero-1600.jpg" srcset="assets/photos/hero-900.jpg 900w, assets/photos/hero-1600.jpg 1600w, assets/photos/hero.jpg 2400w" sizes="100vw" width="1600" height="1111" alt="Luxury stone home at sunset" fetchpriority="high">
     <div class="hero-in wrap">
       <div class="hero-copy">
         <span class="eyebrow light anim" style="--d:0">Rob Vettese · Real Estate Agent · RE/MAX Niagara Realty Ltd., Brokerage</span>
@@ -1116,6 +1140,8 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 
 </main>
 
+<nav class="mbar" aria-label="Quick contact"><a class="btn line" href="tel:+14165400175"><svg><use href="#i-phone"/></svg>Call Rob</a><a class="btn" href="#contact">Book a consultation</a></nav>
+
 <!-- FOOTER -->
 <footer class="footer">
   <div class="f on-dark">
@@ -1248,7 +1274,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   var years=25,shown=null,raf;
   function tween(to){var from=shown==null?to:shown,t0=null;cancelAnimationFrame(raf);
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||from===to){shown=to;$('o-pay').textContent=money(to);return}
-    (function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/450),e=1-Math.pow(1-k,3);var v=from+(to-from)*e;$('o-pay').textContent=money(v);shown=v;if(k<1)raf=requestAnimationFrame(step)})(performance.now())}
+    (function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/220),e=1-Math.pow(1-k,3);var v=from+(to-from)*e;$('o-pay').textContent=money(v);shown=v;if(k<1)raf=requestAnimationFrame(step)})(performance.now())}
   function calc(){
     var price=+$('m-price').value,downPct=+$('m-down').value,rate=+$('m-rate').value/100;
     var down=price*downPct/100,loan=price-down,n=years*12,i=Math.pow(1+rate/2,1/6)-1;
@@ -1265,7 +1291,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   // Reveal on scroll
   var els=document.querySelectorAll('.rv-up');
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0,rootMargin:'0px 0px 15% 0px'});
     els.forEach(function(el){io.observe(el)});
   } else els.forEach(function(el){el.classList.add('in')});
 })();
