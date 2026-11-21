@@ -699,6 +699,35 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   .mbar .btn{height:46px;width:100%}
   body{padding-bottom:80px}
 }
+
+/* v7: mobile compatibility */
+@media (max-width:980px){
+  input,select,textarea,.s-q input,.s-f select,.fi input,.fi select,.fi textarea,.pillform input{font-size:16px!important} /* prevents iOS zoom on focus */
+  .mbar{grid-template-columns:auto 1fr}
+  .mbar .btn{padding:0 18px;font-size:14.5px}
+  .namecard a,.f-card .row a{display:grid;place-items:center;flex:none;width:44px;height:44px;margin:-10px -10px -10px 0}
+  .ct-lines a,.ct-lines div{min-height:44px;align-items:center}
+  .ct-lines svg{margin-top:0}
+  .rg input[type=range]{height:32px}
+  .nav-logo{display:flex;align-items:center;min-height:44px}
+  .f-mid ul a,.legal-links a{display:inline-block;padding:6px 0}
+  .hero-copy h1{font-size:clamp(34px,9.5vw,56px)}
+  .hero .btns .btn{flex:1 1 auto}
+}
+@media (max-width:360px){.wrap{padding:0 16px}.mbar .btn{padding:0 14px;font-size:14px}.hero-copy .eyebrow{font-size:12px;letter-spacing:.14em}}
+
+.slide .more{display:none;margin-top:10px;background:none;border:0;color:var(--brass);font:600 14px Manrope,sans-serif;cursor:pointer;min-height:44px;align-items:center;padding:0}
+@media (max-width:980px){
+  .mmenu .btn{display:flex;justify-content:center}
+  .nav.open ~ .mbar,body.menu-open .mbar{display:none}
+  .slide .txt{max-height:15.5em;overflow:hidden;position:relative;transition:max-height .25s ease-out}
+  .slide .txt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3em;background:linear-gradient(transparent,var(--navy));pointer-events:none}
+  .slide.expanded .txt{max-height:none}
+  .slide.expanded .txt::after{display:none}
+  .slide .more{display:inline-flex}
+}
+.slide.short .more{display:none!important}.slide.short .txt::after{display:none}
+@media (max-width:420px){.chips span:nth-child(n+3){display:none}}
 </style>
 </head>
 <body>
@@ -1140,7 +1169,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 
 </main>
 
-<nav class="mbar" aria-label="Quick contact"><a class="btn line" href="tel:+14165400175"><svg><use href="#i-phone"/></svg>Call Rob</a><a class="btn" href="#contact">Book a consultation</a></nav>
+<nav class="mbar" aria-label="Quick contact"><a class="btn line" href="tel:+14165400175"><svg><use href="#i-phone"/></svg>Call</a><a class="btn" href="#contact">Book a consultation</a></nav>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -1215,8 +1244,11 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   // Reviews carousel
   var main=document.getElementById('rvMain');
   main.innerHTML=reviews.map(function(r,i){
-    return '<article class="slide'+(i===0?' on':'')+'" aria-roledescription="slide" aria-label="Review '+(i+1)+' of '+reviews.length+'"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><h3>“'+esc(r.title)+'”</h3><div class="txt">'+r.text.map(function(t){return '<p>'+esc(t)+'</p>'}).join('')+'</div><div class="who"><div class="av">'+ini(r.name)+'</div><div><strong>'+esc(r.name)+'</strong><span>'+esc(r.meta)+'</span></div></div></article>';
+    return '<article class="slide'+(i===0?' on':'')+'" aria-roledescription="slide" aria-label="Review '+(i+1)+' of '+reviews.length+'"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><h3>“'+esc(r.title)+'”</h3><div class="txt">'+r.text.map(function(t){return '<p>'+esc(t)+'</p>'}).join('')+'</div><button type="button" class="more">Read full review</button><div class="who"><div class="av">'+ini(r.name)+'</div><div><strong>'+esc(r.name)+'</strong><span>'+esc(r.meta)+'</span></div></div></article>';
   }).join('');
+  main.addEventListener('click',function(e){var b=e.target.closest('.more');if(!b)return;var sl=b.closest('.slide');var x=sl.classList.toggle('expanded');b.textContent=x?'Show less':'Read full review'});
+  function markShort(){main.querySelectorAll('.slide').forEach(function(sl){var t=sl.querySelector('.txt');sl.classList.toggle('short',t.scrollHeight<=t.clientHeight+4&&!sl.classList.contains('expanded'))})}
+  window.addEventListener('resize',markShort);setTimeout(markShort,50);
   var cur=0,slides=main.querySelectorAll('.slide'),pad=function(n){return (n<10?'0':'')+n};
   document.getElementById('rvTot').textContent=pad(slides.length);
   function go(i){var dir=i<cur?'left':'';cur=(i+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.remove('left');if(k!==cur&&s.classList.contains('on')&&dir)s.classList.add('left');s.classList.toggle('on',k===cur)});document.getElementById('rvNum').textContent=pad(cur+1)}
@@ -1225,8 +1257,8 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 
   // Nav
   var nav=document.getElementById('nav'),burger=document.getElementById('burger');
-  burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
-  nav.querySelectorAll('.mmenu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');burger.setAttribute('aria-expanded',false)})});
+  burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o);document.body.classList.toggle('menu-open',o)});
+  nav.querySelectorAll('.mmenu a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');burger.setAttribute('aria-expanded',false);document.body.classList.remove('menu-open')})});
   var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>10)};window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
   // Guides
