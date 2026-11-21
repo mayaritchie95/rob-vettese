@@ -590,6 +590,91 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   .qa-a p{padding-right:0}
   .hero-meta{padding-left:20px;padding-right:20px}
 }
+
+/* v5: hero overlay */
+.hero{padding-top:12px}
+.hero-media{margin:0 12px;height:clamp(640px,calc(100vh - 108px),900px);border-radius:24px;display:flex}
+.hero-media::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(14,22,36,.82) 0%,rgba(14,22,36,.55) 42%,rgba(14,22,36,.08) 75%),linear-gradient(0deg,rgba(14,22,36,.55) 0%,rgba(14,22,36,0) 35%);pointer-events:none}
+.hero-media.img > img{object-position:62% 62%}
+.hero-in{position:relative;z-index:2;width:100%;display:flex;flex-direction:column;justify-content:flex-end;padding-top:clamp(56px,8vw,100px);padding-bottom:28px}
+.hero-copy{max-width:760px;margin-bottom:auto;padding-top:clamp(0px,4vh,40px)}
+.hero-copy h1{color:var(--cream);margin:22px 0 24px;font-size:clamp(42px,5.6vw,84px)}
+.hero-copy p{color:rgba(245,241,232,.82);font-size:clamp(16px,1.3vw,18px);line-height:1.7;max-width:540px;margin-bottom:32px}
+.search{margin:48px 0 0;width:100%}
+/* entrance animation (CSS only) */
+.anim{opacity:0;transform:translateY(22px);animation:up .9s var(--ease) forwards;animation-delay:calc(var(--d,0) * 110ms + 150ms)}
+@keyframes up{to{opacity:1;transform:none}}
+.hero-media > img{animation:kb 1.6s var(--ease) both}
+@keyframes kb{from{transform:scale(1.06)}to{transform:scale(1)}}
+
+/* v5: segmented control with sliding indicator */
+.seg,.amort{position:relative;isolation:isolate}
+.seg-ind{position:absolute;z-index:-1;top:4px;bottom:4px;left:0;width:0;border-radius:var(--pill);background:var(--navy);transition:transform .45s var(--ease),width .45s var(--ease);will-change:transform}
+.amort .seg-ind{top:0;bottom:0}
+.seg button.on,.amort button.on{background:transparent!important;color:var(--cream)}
+.seg button,.amort button{transition:color .35s var(--ease)}
+.amort{padding:0}
+.amort button.on{border-color:transparent}
+/* guide panels */
+.guides{display:grid}
+.guide{grid-area:1/1;display:grid!important;visibility:hidden;pointer-events:none}
+.guide .g{opacity:0;transform:translateX(24px);transition:opacity .45s var(--ease),transform .55s var(--ease)}
+.guide.out .g{transform:translateX(-24px)}
+.guide.on{visibility:visible;pointer-events:auto}
+.guide.on .g{opacity:1;transform:none}
+.guide.on .g:nth-child(2){transition-delay:.06s}.guide.on .g:nth-child(3){transition-delay:.12s}.guide.on .g:nth-child(4){transition-delay:.18s}.guide.on .g:nth-child(5){transition-delay:.24s}
+.g{border-top:0;position:relative}
+.g::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--navy);transform-origin:left;transform:scaleX(0);transition:transform .7s var(--ease)}
+.guide.on .g::before{transform:scaleX(1)}
+
+/* reviews: slide transition */
+.rv-main{display:grid}
+.slide{grid-area:1/1;display:block!important;opacity:0;visibility:hidden;transform:translateX(30px);transition:opacity .55s var(--ease),transform .65s var(--ease),visibility 0s .65s;animation:none}
+.slide.left{transform:translateX(-30px)}
+.slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .55s var(--ease) .1s,transform .65s var(--ease) .1s,visibility 0s}
+
+/* staggered reveal for grids */
+.paths .rv-up:nth-child(2),.listings .rv-up:nth-child(2),.direct-grid .rv-up:nth-child(2),.team-cols .rv-up:nth-child(2){transition-delay:.1s}
+.paths .rv-up:nth-child(3),.listings .rv-up:nth-child(3),.direct-grid .rv-up:nth-child(3){transition-delay:.2s}
+.big{font-variant-numeric:tabular-nums}
+
+/* v5: resources + calculator alignment */
+.res,.calc{grid-template-columns:1fr 1fr;gap:20px}
+.calc{margin-top:20px;background:transparent;border-radius:0;overflow:visible}
+.calc-in{background:var(--paper);border-radius:var(--r)}
+.calc-out{border-radius:var(--r)}
+.alert-card{min-height:0;height:100%}
+
+/* v5: investment team */
+.team{background:var(--navy);border-radius:28px;margin:0 12px;padding:clamp(80px,10vw,140px) 0;color:var(--cream)}
+.team h2{color:var(--cream);margin-top:16px}
+.team-logo{width:200px;height:auto;margin-bottom:36px;opacity:.95}
+.team-top{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:end;margin-bottom:64px}
+.team .lead{color:rgba(245,241,232,.75);margin-bottom:22px}
+.team .pull{color:rgba(245,241,232,.6);margin-bottom:30px}
+.team .pull b{color:var(--cream)}
+.team-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tcard{background:var(--navy-2);border:1px solid var(--line-light);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.tcard-img{aspect-ratio:16/9;border-radius:0}
+.tcard:hover .tcard-img > img{transform:scale(1.04)}
+.tcard-body{padding:clamp(28px,3.5vw,44px)}
+.tcard .num{font-size:12px;font-weight:600;letter-spacing:.2em;color:var(--brass)}
+.tcard h3{color:var(--cream);font-size:clamp(28px,2.6vw,36px);margin:12px 0 10px}
+.tcard-body > p{color:rgba(245,241,232,.7);margin-bottom:22px}
+.tcard ul{list-style:none}
+.tcard li{position:relative;padding:14px 0 14px 26px;border-top:1px solid var(--line-light);color:rgba(245,241,232,.88);font-size:15.5px}
+.tcard li::before{content:"";position:absolute;left:2px;top:22px;width:7px;height:7px;border-radius:50%;background:var(--brass)}
+
+@media (max-width:980px){
+  .hero-media{height:auto;min-height:620px}
+  .hero-media::after{background:linear-gradient(180deg,rgba(14,22,36,.75) 0%,rgba(14,22,36,.55) 50%,rgba(14,22,36,.75) 100%)}
+  .hero-in{padding-top:56px}
+  .search{margin:40px 0 0}
+  .res,.calc,.team-top,.team-cols{grid-template-columns:minmax(0,1fr)}
+  .alert-card{min-height:520px}
+}
+@media (max-width:640px){.hero-in{padding-left:20px;padding-right:20px}}
+@media (prefers-reduced-motion:reduce){.anim{animation:none;opacity:1;transform:none}.hero-media > img{animation:none}.seg-ind,.guide .g,.slide,.g::before{transition:none!important}}
 </style>
 </head>
 <body>
@@ -654,18 +739,16 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="wrap hero-top">
-    <div class="rv-up">
-      <span class="eyebrow">Rob Vettese · Real Estate Agent · RE/MAX Niagara Realty Ltd., Brokerage</span>
-      <h1>Real estate advice you can trust in St.&nbsp;Catharines &amp;&nbsp;Niagara</h1>
-    </div>
-    <div class="hero-aside rv-up">
-      <p>Whether you're buying your first home, selling, or investing, I'll explain every step and give you honest advice, so you can make decisions with confidence.</p>
-      <div class="btns"><a href="#contact" class="btn">Book a consultation<svg><use href="#i-arrow"/></svg></a></div>
-    </div>
-  </div>
-  <div class="hero-media img" data-slot="hero" data-label="Stock image · Hero — luxury home exterior"><img src="assets/photos/hero.jpg" alt="Luxury stone home at sunset" fetchpriority="high" decoding="async"></div>
-  <form class="search" id="search" aria-label="Search properties">
+  <div class="hero-media img">
+    <img src="assets/photos/hero.jpg" alt="Luxury stone home at sunset" fetchpriority="high" decoding="async">
+    <div class="hero-in wrap">
+      <div class="hero-copy">
+        <span class="eyebrow light anim" style="--d:0">Rob Vettese · Real Estate Agent · RE/MAX Niagara Realty Ltd., Brokerage</span>
+        <h1 class="anim" style="--d:1">Real estate advice you can trust in St.&nbsp;Catharines &amp;&nbsp;Niagara</h1>
+        <p class="anim" style="--d:2">Whether you're buying your first home, selling, or investing, I'll explain every step and give you honest advice, so you can make decisions with confidence.</p>
+        <div class="btns anim" style="--d:3"><a href="#contact" class="btn cream">Book a consultation<svg><use href="#i-arrow"/></svg></a><a href="#investing" class="btn line-light">Investing with Rob</a></div>
+      </div>
+      <form class="search anim" style="--d:4" id="search" aria-label="Search properties">
     <label class="s-q"><svg><use href="#i-search"/></svg><input type="search" placeholder="Search by city, neighbourhood or address" aria-label="Search for properties"></label>
     <button class="btn" type="submit">Search</button>
     <div class="s-f"><svg><use href="#i-pin"/></svg>
@@ -677,6 +760,8 @@ section[id],#calculator,#top{scroll-margin-top:90px}
     <div class="s-f"><svg><use href="#i-tag"/></svg>
       <select aria-label="Type"><option>For sale</option><option>Recently sold</option><option>For lease</option></select></div>
   </form>
+    </div>
+  </div>
   <div class="wrap">
     <div class="hero-meta">
       <span><span class="stars">★★★★★</span>Reviews from real clients</span>
@@ -789,8 +874,9 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   <div class="wrap">
     <div class="sh rv-up">
       <div><span class="eyebrow">Step by step</span><h2>What to expect, start to finish</h2></div>
-      <div style="justify-self:end"><div class="seg" role="tablist"><button type="button" class="on" data-g="buy">Buying</button><button type="button" data-g="sell">Selling</button></div></div>
+      <div style="justify-self:end"><div class="seg" role="tablist" data-seg><span class="seg-ind" aria-hidden="true"></span><button type="button" class="on" data-g="buy" role="tab" aria-selected="true">Buying</button><button type="button" data-g="sell" role="tab" aria-selected="false">Selling</button></div></div>
     </div>
+    <div class="guides">
     <div class="guide on" id="g-buy">
       <div class="g"><b>01</b><h3>Talk about your goals</h3><p>Budget, must-haves, neighbourhoods and timing. We figure out what really matters to you.</p></div>
       <div class="g"><b>02</b><h3>Get pre-approved</h3><p>Speak with a lender or mortgage broker so you know your price range before you start touring.</p></div>
@@ -805,6 +891,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
       <div class="g"><b>04</b><h3>Review offers</h3><p>We go over every offer together, terms as well as price, and I negotiate to protect your interests.</p></div>
       <div class="g"><b>05</b><h3>Sold to closed</h3><p>I handle the details through conditions and closing and keep you updated at every step.</p></div>
     </div>
+    </div>
     <div class="band-foot rv-up">
       <p>Every move is different. These steps give you a feel for the process, and we'll tailor it to your situation.</p>
       <a href="#contact" class="btn">Book a consultation<svg><use href="#i-arrow"/></svg></a>
@@ -813,19 +900,51 @@ section[id],#calculator,#top{scroll-margin-top:90px}
 </section>
 
 <!-- INVESTING -->
-<section class="section" id="investing">
-  <div class="wrap split">
-    <div class="img tall rv-up" data-slot="investing" data-label="Stock image · Investing — architecture / detail"><img src="assets/photos/investing.jpg" alt="Modern glass building facade" loading="lazy" decoding="async"></div>
-    <div class="rv-up">
-      <span class="eyebrow">Investing</span>
-      <h2>Advice from someone who invests too</h2>
-      <p class="lead">I've been a real estate investor myself, so I look at a property the way you will: the numbers, the rental potential, and what it will take to get it ready. Whether it's your first rental or you're adding to a portfolio, we'll look at the data together before you decide.</p>
-      <div class="cols2">
-        <div><h4>Investment support</h4><ul><li>Running the numbers on a property</li><li>Timing, rates and market trends</li><li>Finding rental properties</li><li>Tenant screening and placement</li><li>Selling an investment property</li></ul></div>
-        <div><h4>Renovations &amp; trades</h4><ul><li>Connections to trusted contractors</li><li>Getting a property market-ready</li><li>Renovation help when buying</li><li>Other professionals when needed</li></ul></div>
+<section class="team on-dark" id="investing">
+  <div class="wrap">
+    <div class="team-top">
+      <div class="rv-up">
+        <img class="team-logo" src="assets/investment-team-logo-white.webp" alt="Investment Team logo" width="900" height="285" loading="lazy" decoding="async">
+        <span class="eyebrow">Investments &amp; Construction</span>
+        <h2>Part of the Investment Team</h2>
       </div>
-      <p class="pull">“Every single tenant paid every months rent on time…” <b>— Jim Ginwalla</b></p>
-      <a href="#contact" data-interest="Investing" class="btn">Talk investing<svg><use href="#i-arrow"/></svg></a>
+      <div class="rv-up">
+        <p class="lead">I work as part of an investment team, so you get more than a standard real estate service. When you're looking at an income property or a project, you have people around the table who analyze deals, renovate, build and manage property. Every decision starts with the numbers and a clear plan.</p>
+        <p class="pull">“Every single tenant paid every months rent on time…” <b>— Jim Ginwalla, investment property owner</b></p>
+        <div class="btns"><a href="#contact" data-interest="Investing" class="btn cream">Explore investing<svg><use href="#i-arrow"/></svg></a><a href="#contact" class="btn line-light">Talk to Rob</a></div>
+      </div>
+    </div>
+    <div class="team-cols">
+      <article class="tcard rv-up">
+        <div class="img tcard-img"><img src="assets/photos/investments.jpg" alt="Modern glass building" loading="lazy" decoding="async"></div>
+        <div class="tcard-body">
+          <span class="num">01</span>
+          <h3>Investments</h3>
+          <p>Finding, running the numbers on, and growing income properties in Niagara.</p>
+          <ul>
+            <li>Deal analysis using realistic rents, expenses and cash flow</li>
+            <li>Single-family rentals, duplexes and multi-unit properties</li>
+            <li>Value-add opportunities, including secondary suite potential</li>
+            <li>Portfolio planning: when to buy, hold, refinance or sell</li>
+            <li>Leasing support, tenant screening and placement</li>
+          </ul>
+        </div>
+      </article>
+      <article class="tcard rv-up">
+        <div class="img tcard-img"><img src="assets/photos/construction.jpg" alt="Renovated two-storey home with stone exterior" loading="lazy" decoding="async"></div>
+        <div class="tcard-body">
+          <span class="num">02</span>
+          <h3>Construction</h3>
+          <p>Seeing what a property could be, and what it will realistically take to get there.</p>
+          <ul>
+            <li>Renovation planning and budgeting before you buy</li>
+            <li>Additional dwelling units, basement suites and conversions</li>
+            <li>New build and infill opportunities</li>
+            <li>Assessing condition, upgrades and hidden costs</li>
+            <li>Connections to trusted trades and contractors</li>
+          </ul>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -865,7 +984,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
         <div class="rg"><div class="rg-top"><label for="m-down">Down payment</label><output id="o-down"></output></div><input type="range" id="m-down" min="5" max="50" step="1" value="20"></div>
         <div class="rg"><div class="rg-top"><label for="m-rate">Interest rate</label><output id="o-rate"></output></div><input type="range" id="m-rate" min="1" max="9" step="0.05" value="4.5"></div>
         <div class="rg" style="margin-bottom:0"><div class="rg-top"><label>Amortization</label></div>
-          <div class="amort" id="amort"><button type="button" data-y="20">20 years</button><button type="button" class="on" data-y="25">25 years</button><button type="button" data-y="30">30 years</button></div></div>
+          <div class="amort" id="amort" data-seg><span class="seg-ind" aria-hidden="true"></span><button type="button" data-y="20">20 years</button><button type="button" class="on" data-y="25">25 years</button><button type="button" data-y="30">30 years</button></div></div>
       </div>
       <div class="calc-out on-dark">
         <span class="eyebrow">Estimated payment</span>
@@ -1074,7 +1193,7 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   }).join('');
   var cur=0,slides=main.querySelectorAll('.slide'),pad=function(n){return (n<10?'0':'')+n};
   document.getElementById('rvTot').textContent=pad(slides.length);
-  function go(i){cur=(i+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.toggle('on',k===cur)});document.getElementById('rvNum').textContent=pad(cur+1)}
+  function go(i){var dir=i<cur?'left':'';cur=(i+slides.length)%slides.length;slides.forEach(function(s,k){s.classList.remove('left');if(k!==cur&&s.classList.contains('on')&&dir)s.classList.add('left');s.classList.toggle('on',k===cur)});document.getElementById('rvNum').textContent=pad(cur+1)}
   document.getElementById('rvPrev').addEventListener('click',function(){go(cur-1)});
   document.getElementById('rvNext').addEventListener('click',function(){go(cur+1)});
 
@@ -1085,9 +1204,16 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>10)};window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
   // Guides
+  // Sliding indicator for segmented controls
+  function moveInd(group){var on=group.querySelector('button.on'),ind=group.querySelector('.seg-ind');if(!on||!ind)return;ind.style.width=on.offsetWidth+'px';ind.style.transform='translateX('+on.offsetLeft+'px)'}
+  var segs=document.querySelectorAll('[data-seg]');
+  segs.forEach(moveInd);window.addEventListener('resize',function(){segs.forEach(moveInd)});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){segs.forEach(moveInd)});
   function showGuide(g){
-    document.querySelectorAll('.seg button').forEach(function(b){b.classList.toggle('on',b.dataset.g===g)});
-    document.querySelectorAll('.guide').forEach(function(el){el.classList.toggle('on',el.id==='g-'+g)});
+    var seg=document.querySelector('.seg');
+    seg.querySelectorAll('button').forEach(function(b){var o=b.dataset.g===g;b.classList.toggle('on',o);b.setAttribute('aria-selected',o)});
+    moveInd(seg);
+    document.querySelectorAll('.guide').forEach(function(el){var o=el.id==='g-'+g;if(el.classList.contains('on')&&!o)el.classList.add('out');if(o)el.classList.remove('out');el.classList.toggle('on',o)});
   }
   document.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){showGuide(b.dataset.g)})});
   document.querySelectorAll('[data-guide]').forEach(function(a){a.addEventListener('click',function(){showGuide(a.dataset.guide)})});
@@ -1119,16 +1245,19 @@ section[id],#calculator,#top{scroll-margin-top:90px}
   // Mortgage calculator (Canadian fixed-rate: semi-annual compounding, monthly payments)
   var $=function(id){return document.getElementById(id)};
   var money=function(n){return '$'+Math.round(n).toLocaleString('en-CA')};
-  var years=25;
+  var years=25,shown=null,raf;
+  function tween(to){var from=shown==null?to:shown,t0=null;cancelAnimationFrame(raf);
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||from===to){shown=to;$('o-pay').textContent=money(to);return}
+    (function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/450),e=1-Math.pow(1-k,3);var v=from+(to-from)*e;$('o-pay').textContent=money(v);shown=v;if(k<1)raf=requestAnimationFrame(step)})(performance.now())}
   function calc(){
     var price=+$('m-price').value,downPct=+$('m-down').value,rate=+$('m-rate').value/100;
     var down=price*downPct/100,loan=price-down,n=years*12,i=Math.pow(1+rate/2,1/6)-1;
     var pay=i>0?loan*i/(1-Math.pow(1+i,-n)):loan/n;
     $('o-price').textContent=money(price);$('o-down').textContent=downPct+'%';$('o-rate').textContent=(rate*100).toFixed(2)+'%';
-    $('o-pay').textContent=money(pay);$('o-downamt').textContent=money(down);$('o-loan').textContent=money(loan);$('o-int').textContent=money(pay*n-loan);
+    tween(pay);$('o-downamt').textContent=money(down);$('o-loan').textContent=money(loan);$('o-int').textContent=money(pay*n-loan);
   }
   ['m-price','m-down','m-rate'].forEach(function(id){$(id).addEventListener('input',calc)});
-  $('amort').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;years=+b.dataset.y;$('amort').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});calc()});
+  $('amort').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;years=+b.dataset.y;$('amort').querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)});moveInd($('amort'));calc()});
   calc();
 
   document.getElementById('yr').textContent=new Date().getFullYear();
